@@ -4,6 +4,7 @@ Lib/
 Scripts/
 pyvenv.cfg
 practicas/node_modules
+practicas/__pycache__
 
 # Configuraciones de IDE
 .idea/
