@@ -3,6 +3,7 @@ Include/
 Lib/
 Scripts/
 pyvenv.cfg
+practicas/node_modules
 
 # Configuraciones de IDE
 .idea/
