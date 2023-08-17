@@ -525,9 +525,13 @@ video {
   margin-left: auto;
   margin-right: auto;
 }
-.bg-red-200 {
+.bg-emerald-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
+}
+.bg-sky-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(186 230 253 / var(--tw-bg-opacity));
 }
 .px-4 {
   padding-left: 1rem;

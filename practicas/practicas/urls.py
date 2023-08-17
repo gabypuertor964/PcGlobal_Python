@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tailwind.views import index
+from tailwind.views import index,saludo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('/hola', saludo, name='hola'),
 ]
