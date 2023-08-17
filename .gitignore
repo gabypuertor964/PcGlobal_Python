@@ -1,0 +1,8 @@
+# Ambiente virtual
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+
+# Configuraciones de IDE
+.idea/
