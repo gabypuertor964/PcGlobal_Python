@@ -1,5 +1,5 @@
 """
-ASGI config for practicas project.
+ASGI config for pc_global project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'practicas.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pc_global.settings')
 
 application = get_asgi_application()

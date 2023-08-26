@@ -1,5 +1,5 @@
 """
-URL configuration for practicas project.
+URL configuration for pc_global project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,10 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tailwind.views import index,saludo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('/hola', saludo, name='hola'),
 ]

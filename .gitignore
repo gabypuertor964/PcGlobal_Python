@@ -1,10 +1,38 @@
-# Ambiente virtual
-Include/
-Lib/
-Scripts/
-pyvenv.cfg
-practicas/node_modules
-*/*/__pycache__
+# --------------------
+# Python & Django
+# --------------------
 
-# Configuraciones de IDE
+# Ignorar archivos compilados de Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignorar archivos de base de datos SQLite
+*.sqlite3
+db.sqlite3
+
+# --------------------
+# Entorno Virtual
+# --------------------
+
+# Ignorar entornos virtuales propios de cada desarrollador
+env/
+venv/
+develop/
+
+# --------------------
+# Node & npm
+# --------------------
+
+# Ignorar el directorio de dependencias
+node_modules/
+
+# --------------------
+# IDE'S
+# --------------------
 .idea/
+.vscode/
+
+# --------------------
+# Otros
+# --------------------
