@@ -76,7 +76,7 @@ class UnidadesCompras(models.Model):
 class Direcciones(models.Model):
     id = models.AutoField(primary_key=True, verbose_name="id_direcciones", db_comment="Llave Primaria")
     fk_id_cliente = models.ForeignKey(Users, db_comment="Fk id cliente", on_delete=models.CASCADE,
-                                      verbose_name="fk_id_cliente", null=False)
+                                      verbose_name="fk_id_cliente", null=False, db_column="fk_id_cliente")
 
     direccion = models.TextField(null=False, blank=False, db_comment="Direccion de cliente", verbose_name="direccion")
     created_at = models.DateTimeField(auto_now_add=True)
