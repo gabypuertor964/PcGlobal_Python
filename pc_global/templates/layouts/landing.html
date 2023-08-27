@@ -1,12 +1,20 @@
-{# Importancion Cabecera HTML + Archivos Estaticos #}
-{% include 'components/header.html' %}
+{# Extension Cabecera HTML + Archivos Estaticos #}
+{% extends 'components/head.html' %}
+
+{% block content %}
+    <p>{% lorem 1 b random %}</p>
+
+
+
+{% endblock %}
 
 <body>
 
-    {# Definicion bloque de contenido principal #}	
+    <main>
+
+    </main>
     {% block content %}{% endblock %}
 
 </body>
     
-{# Importancion Pie de Pagina HTML #}	
-{% include 'components/footer.html' %}
+

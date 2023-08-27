@@ -1,8 +1,8 @@
+{% block title_header %}Home{% endblock %}
+
 {# Importación Layout #}
 {% include 'layouts/landing.html' %}
 
 {% block content %}
-
-    HOLA MUNDO
-
+    <p>{% lorem 1 b random %}</p>
 {% endblock %}
