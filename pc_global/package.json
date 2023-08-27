@@ -1,0 +1,25 @@
+{
+  "watch": {
+    "build": {
+      "patterns": [
+        "templates/**/*.html",
+        "templates/**/**.html"
+      ],
+      "extensions": "html",
+      "quiet": false
+    }
+  },
+  "scripts": {
+    "build": "postcss static/css/style.css -o static/css/style.min.css",
+    "watch": "npm-watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.28",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {
+    "npm-watch": "^0.11.0"
+  }
+}
