@@ -72,9 +72,9 @@ class Direcciones(models.Model):
         return self.direccion
 
 
-class TipoEntrega:
+class TipoEntrega(models.Model):
     id = models.AutoField(primary_key=True, verbose_name="id_tipo_entregas", db_comment="Llave Primaria")
-    nombre = models.CharField(unique=True, null=False, verbose_name="nombre_tipo_entrega",
+    nombre = models.CharField(max_length=50, unique=True, null=False, verbose_name="nombre_tipo_entrega",
                               db_comment="Nombre tipo de entrega")
 
     def __str__(self):
