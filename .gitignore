@@ -19,6 +19,7 @@ db.sqlite3
 env/
 venv/
 develop/
+Python/
 
 # --------------------
 # Node & npm
