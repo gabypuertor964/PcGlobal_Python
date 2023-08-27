@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind comnponents;
+@tailwind utilities;
+
 /* Estilos de la barra de desplazamiento */
 body {
     /* Ocultar la barra de desplazamiento por defecto */
