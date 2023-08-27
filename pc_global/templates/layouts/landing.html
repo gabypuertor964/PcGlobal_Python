@@ -1,20 +1,14 @@
 {# Extension Cabecera HTML + Archivos Estaticos #}
 {% extends 'components/head.html' %}
 
-{% block content %}
-    <p>{% lorem 1 b random %}</p>
+<body class="{% block body_class %}{% endblock %}">
 
-
-
-{% endblock %}
-
-<body>
-
-    <main>
-
+    <!-- Contenido Principal -->
+    <main class="{% block main_class %}{% endblock %}">
+        {% block main_content %}{% endblock %}
     </main>
-    {% block content %}{% endblock %}
 
+    {% include 'components/footer.html' %}
 </body>
     
 
