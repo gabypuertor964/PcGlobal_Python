@@ -1,5 +1,6 @@
 from django.shortcuts import render
+from inventory.models import Productos, Categorias, Marcas
 
-# Create your views here.
 def index(request):
-    return render(request, 'landing/index.html')
+    productos = Productos.objects.all()
+    return render(request, 'landing/index.html', {'productos': productos})

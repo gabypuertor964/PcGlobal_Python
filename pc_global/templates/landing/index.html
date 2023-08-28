@@ -118,4 +118,18 @@
       </div>
     </div>
   </section>
+
+  <div class="grid grid-cols-4">
+    {% for producto in productos %}
+      <div>
+        <p>Nombre: {{producto.modelo}}</p>
+        <p>Precio: {{producto.precio}}</p>
+        <p>Categoría: {{producto.categorias}}</p>
+        <p>Marcas: {{producto.marcas}}</p>
+        <p>Total: {{productos.count}}</p>
+      </div>
+    {% empty %}
+        <p>No se encontraron productos.</p>
+    {% endfor %}
+  </div>
 {% endblock  %}
