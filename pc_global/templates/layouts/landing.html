@@ -28,11 +28,9 @@
     </head>
     <body class="{% block body_class %}{% endblock %}">
 
-        <!-- Cabeza sitio web -->
-        <header>
-
-        </header>
-
+        {# Importacion Header #}
+        {% include 'components/headers/landing.html' %}
+        
         <!-- Contenido Pricnipal-->
         <main class="{% block main_class %}{% endblock %}">
 
