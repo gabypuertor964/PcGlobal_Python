@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     'facturation',
     'inventory',
-    'pqrs'
+    'pqrs',
+    'landing'
 ]
 
 MIDDLEWARE = [
