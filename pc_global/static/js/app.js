@@ -1,4 +1,5 @@
 const $btnMenuResponsive = document.getElementById('boton-menu-responsive');
+console.log($btnMenuResponsive);
 
 document.addEventListener("DOMContentLoaded", () => {
     let isScrolling = false;
