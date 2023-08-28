@@ -51,6 +51,8 @@ class FacturasVenta(models.Model):
     total = models.CharField(blank=True, verbose_name="total_factura_venta", max_length=10, db_comment="Valor total")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    unidades_compras = models.ManyToManyField(UnidadesProductos, through="UnidadesCompras",
+                                              related_name="unidades_compras")
 
     def __str__(self):
         return self.id
@@ -59,10 +61,22 @@ class FacturasVenta(models.Model):
         db_table = "facturas_venta"
 
 
+class UnidadesCompras(models.Model):
+    id = models.AutoField(primary_key=True, verbose_name="id_unidades_compras", db_comment="Llave Primaria")
+    fk_id_factura = models.ForeignKey(FacturasVenta, on_delete=models.CASCADE, verbose_name="fk_id_factura")
+    fk_id_unidad = models.ForeignKey(UnidadesProductos, on_delete=models.CASCADE, verbose_name="fk_id_unidad")
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = "unidades_compras"
+
+
 class Direcciones(models.Model):
     id = models.AutoField(primary_key=True, verbose_name="id_direcciones", db_comment="Llave Primaria")
     fk_id_cliente = models.ForeignKey(Users, db_comment="Fk id cliente", on_delete=models.CASCADE,
-                                      verbose_name="fk_id_cliente", null=False)
+                                      verbose_name="fk_id_cliente", null=False, db_column="fk_id_cliente")
 
     direccion = models.TextField(null=False, blank=False, db_comment="Direccion de cliente", verbose_name="direccion")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -91,16 +105,17 @@ class Entregas(models.Model):
     fk_id_trabajador = models.ForeignKey(Users, on_delete=models.CASCADE, null=False, verbose_name="id_trabajador",
                                          db_comment="Fk id trabajador")
 
-    fk_id_tipo_entrega = models.ForeignKey(TipoEntrega, on_delete=models.CASCADE, null=False, verbose_name="id_tipo_entrega",
+    fk_id_tipo_entrega = models.ForeignKey(TipoEntrega, on_delete=models.CASCADE, null=False,
+                                           verbose_name="id_tipo_entrega",
                                            db_comment="FK id tipo de entrega")
 
     fk_id_direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, null=False, verbose_name="id_direccion"
                                         , db_comment="Fk id direcciones xd")
 
-    fecha_entrega = models.DateTimeField(null=False, verbose_name="fecha_entrega", blank=False, db_comment="Fecha y hora de entrega")
+    fecha_entrega = models.DateTimeField(null=False, verbose_name="fecha_entrega", blank=False,
+                                         db_comment="Fecha y hora de entrega")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    unidades_compras = models.ManyToManyField(UnidadesProductos, related_name="unidades_compras")
 
     def __str__(self):
         return self.id

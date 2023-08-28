@@ -10,6 +10,7 @@ class TipoPqrs(models.Model):
         return self.nombre
 
 
+
 class Pqrs(models.Model):
     fk_id_cliente = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name="fk_idCliente", related_name="pqrs_cliente")
     fk_id_trabajador = models.ForeignKey(Users, on_delete=models.CASCADE, related_name="pqrs_trabajador")
