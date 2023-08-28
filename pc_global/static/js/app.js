@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 $btnMenuResponsive.addEventListener('click', () =>{
-    // const $menuResponsive = document.getElementById('menu-responsive');
-    // $menuResponsive.classList.toggle("hidden");
+    const $menuResponsive = document.getElementById('menu-responsive');
+    $menuResponsive.classList.toggle("hidden");
     $btnMenuResponsive.classList.toggle("fa-bars");
     $btnMenuResponsive.classList.toggle("fa-xmark");
 });
