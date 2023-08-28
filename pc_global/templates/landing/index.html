@@ -1,9 +1,16 @@
+{# Extension Layout principal#}
 {% extends 'layouts/landing.html' %}
 
-{% block title_header %}Página de Inicio{% endblock %}
+{# Declaracion comlemento titulo pagina #}
+{% block title_header  %}Home{% endblock  %}
 
+{# Declaracion Clases Body #}
+{% block body_class %}flex flex-col min-h-screen bg-gray-100{% endblock %}
+
+{# Declaracion Clases Main #}
+{% block main_class %}container my-10 text-justify mx-auto flex-grow  mx-2{% endblock %}
+
+{# Contenido Principal pagina #}
 {% block main %}
-    <!-- Contenido del bloque principal -->
-    <h2 class="bg-blue-500">Bienvenido a Mi Sitio Web</h2>
-    <p>Este es el contenido principal de la página de inicio.</p>
-{% endblock %}
+
+{% endblock  %}

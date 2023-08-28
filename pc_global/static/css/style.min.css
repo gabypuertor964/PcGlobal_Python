@@ -485,7 +485,7 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-@tailwind comnponents;
+@tailwind components;
 .static {
   position: static;
 }
