@@ -10,10 +10,18 @@ class adminCategory(admin.ModelAdmin):
         if not obj.slug:
             obj.slug = slugify(obj.nombre)
         super().save_model(request, obj, form, change) 
+        
+class adminProduct(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('modelo',)}
+
+    def save_model(self, request, obj, form, change):
+        if not obj.slug:
+            obj.slug = slugify(obj.nombre)
+        super().save_model(request, obj, form, change) 
 
 # Register your models here.
 admin.site.register(categories, adminCategory)
 admin.site.register(brands)
-admin.site.register(products)
+admin.site.register(products, adminProduct)
 admin.site.register(unitsProducts)
 admin.site.register(unitsBuy)
