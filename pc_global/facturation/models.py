@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 from landing.models import states
 from landing.models import addresses
@@ -23,7 +23,7 @@ class receiptBuy(models.Model):
 
     # Foreigh Key: Id Trabajador Solicitante
     id_trabajador_solicitante = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         db_column="id_trabajador_solicitante",
         db_comment="Id del trabajador solicita el pedido",
@@ -40,7 +40,7 @@ class receiptBuy(models.Model):
 
     # Foreigh Key: Id Trabajador receptor
     id_trabajador_receptor = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         db_column="id_trabajador_receptor",
         db_comment="Id del trabajador que recibe el pedido",
@@ -128,7 +128,7 @@ class receiptSale(models.Model):
 
     # foreigh key: Id cliente
     id_cliente = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         db_column="id_cliente",
         db_comment="Id del cliente",
@@ -199,7 +199,7 @@ class deliveries(models.Model):
 
     # Foreigh Key: Id repartidor
     id_repartidor = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         db_column="id_repartidor",
         db_comment="Id del repartidor",

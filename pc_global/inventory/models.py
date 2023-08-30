@@ -94,7 +94,8 @@ class products(models.Model):
     descripcion_2 = models.TextField(
         verbose_name="descripcion 2",
         db_comment="Descripcion 2 del producto",
-        null=True
+        null=True,
+        blank=True
     )
 
     # Campo: Precio
