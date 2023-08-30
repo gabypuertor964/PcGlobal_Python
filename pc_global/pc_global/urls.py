@@ -21,4 +21,5 @@ from landing import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('categorias/<categoria>/', views.categorias, name='categorias'),
 ]

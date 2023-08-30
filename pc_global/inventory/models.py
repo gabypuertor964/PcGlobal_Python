@@ -20,6 +20,7 @@ class Categorias(models.Model):
     
     nombre_categoria = models.CharField(max_length=50, db_comment="Nombre de la Categoría", unique=True,
                                         verbose_name="nombre de la categoría")
+    slug = models.CharField(max_length=100, db_comment="Ruta Url", unique=True, verbose_name="Ruta Url")
 
     def __str__(self):
         return self.nombre_categoria
@@ -32,8 +33,8 @@ class Categorias(models.Model):
 
 
 class Productos(models.Model):
-    marcas = models.ForeignKey(Marcas, on_delete=models.CASCADE, verbose_name="id_marcas", null=False, blank=False)
-    categorias = models.ForeignKey(Categorias, on_delete=models.CASCADE, verbose_name="id_categorias", null=False, blank=False)
+    marca = models.ForeignKey(Marcas, on_delete=models.CASCADE, verbose_name="Marca", null=False, blank=False)
+    categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, verbose_name="Categoria", null=False, blank=False)
     modelo = models.CharField(max_length=55, unique=True, verbose_name="modelo")
     # imagen_producto = models.ImageField(upload_to="img_producto/%Y/%m/%d", null=True, blank=False)
     imagen_producto = models.TextField(db_column="imagen", verbose_name="Imágen del producto",db_comment="Imágen del producto")
@@ -53,7 +54,7 @@ class Productos(models.Model):
 
 
 class UnidadesProductos(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name="id_unidades_productos")
+
     id_producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
     serial = models.CharField(max_length=255, unique=True, null="False", verbose_name="seriales", db_comment= "Serial Unidad del producto")
     # id_factura = models.ForeignKey(FacturasCompra, on_delete=models.CASCADE, null=False)
