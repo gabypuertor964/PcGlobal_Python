@@ -1,7 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
-
 from landing.models import states
+from django.conf import settings
 
 # Tabla: Tipo de PQRS
 class pqrs_types(models.Model):
@@ -29,7 +28,7 @@ class pqrs(models.Model):
 
     # Foreign Key tabla users (id_cliente)
     id_cliente = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         db_column='id_cliente',
         db_comment="Id Cliente",
@@ -39,7 +38,7 @@ class pqrs(models.Model):
 
     # Foreign Key tabla users (id_trabajador)
     id_trabajador = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         db_column='id_trabajador',
         db_comment="Id Trabajador",
