@@ -11,7 +11,7 @@ class docTypes(models.Model):
         unique=True, 
         db_comment="Nombre tipo documento",
         verbose_name="nombre",
-        null=False
+        null=True
     )
 
     # Campo Siglas
@@ -112,7 +112,7 @@ class userCustom(AbstractUser):
         db_comment="Llave foranea tabla generos",
         verbose_name="id genero usuario",
         related_name="id_genero_usuario",
-        null=False
+        null=True
     )
 
     # Foreign key: Id tipo documento
@@ -123,7 +123,7 @@ class userCustom(AbstractUser):
         db_comment="Llave foranea tabla tipos documento",
         verbose_name="id tipo documento usuario",
         related_name="id_tipo_documento_usuario",
-        null=False
+        null=True
     )
 
     # Campo: Numero de documento
@@ -131,7 +131,7 @@ class userCustom(AbstractUser):
         max_length=15,
         db_comment="Numero de documento del usuario",
         verbose_name="numero documento",
-        null=False,
+        null=True,
         unique=True
     )
 
@@ -140,14 +140,14 @@ class userCustom(AbstractUser):
         max_length=15,
         db_comment="Numero telefonico del usuario",
         verbose_name="numero telefonico",
-        null=False
+        null=True
     )
 
     # Campo: Fecha de nacimiento
     fecha_nacimiento = models.DateField(
         db_comment="Fecha de nacimiento del usuario",
         verbose_name="fecha nacimiento",
-        null=False
+        null=True
     )
 
     # Foreing Key: Id Estado
@@ -158,7 +158,7 @@ class userCustom(AbstractUser):
         db_comment="Llave foranea tabla estados",
         verbose_name="id estado usuario",
         related_name="id_estado_usuario",
-        null=False
+        null=True
     )
 
     # Campo: Fecha de creacion
