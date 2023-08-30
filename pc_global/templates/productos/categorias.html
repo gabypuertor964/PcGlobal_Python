@@ -5,7 +5,7 @@
 {% load static %}
 
 {# Declaracion comlemento titulo pagina #}
-{% block title_header  %}{{categoria.nombre_categoria}}{% endblock  %}
+{% block title_header  %}{{categoria.nombre}}{% endblock  %}
 
 {# Declaracion Clases Body #}
 {% block body_class %}flex flex-col min-h-screen bg-gray-100{% endblock %}
@@ -16,15 +16,15 @@
 {# Contenido Principal pagina #}
 {% block main %}
 
-    <h1 class="text-center font-bold text-2xl py-10">{{categoria.nombre_categoria}}</h1>
+    <h1 class="text-center font-bold text-2xl py-10">{{categoria.nombre}}</h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 productos gap-4">
         {% for producto in productos %}
         <div class="my-3 border rounded shadow">
             <h3 class="p-3 text-center mx-10 border-b border-gray-600 font-medium">{{producto.modelo}}</h3>
-            <img src="/static/img/{{ producto.imagen_producto }}" alt="{{producto.modelo}}" class="my-3">
+            <img src="/static/img/{{ producto.imagen }}" alt="{{producto.modelo}}" class="my-3">
             {# Se accede a la carpeta 'storage/' y se accede a la posicón del registro para cargar la imágen #}
-            <p class="text-center py-2 border-t border-gray-600 mx-10">${{ producto.precio }} COP</p>
+            <p class="text-center py-2 border-t border-gray-600 mx-10">${{ producto.precio|floatformat:0 }} COP</p>
             {# El segundo argumento de number_format especifica la cantidad de decimales (en este caso, 0), el tercer argumento es el separador decimal (en este caso, un punto) y el cuarto argumento es el separador de miles (también un punto). #}
             <p class="flex">
               <a href="" class="bg-indigo-600 hover:bg-indigo-700 text-center mx-auto mb-3 rounded text-white py-2 px-8">Detalles</a>

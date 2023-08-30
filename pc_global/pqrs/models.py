@@ -1,47 +1,104 @@
 from django.db import models
-from landing.models import Users, Estado
-from datetime import datetime
+from django.contrib.auth.models import User
 
+from landing.models import states
 
-class TipoPqrs(models.Model):
-    nombre = models.CharField(max_length=15, verbose_name="tipo_pqrs", unique=True)
+# Tabla: Tipo de PQRS
+class pqrs_types(models.Model):
+
+    # Campo Nombre
+    nombre = models.CharField(
+        max_length=15,
+        verbose_name="nombre",
+        db_comment="Nombre del tipo de PQRS"
+    )
 
     def __str__(self):
         return self.nombre
+    
+    # Metadatos de la tabla
+    class Meta:
+        verbose_name = 'Tipo de PQRS'
+        verbose_name_plural = 'Tipos de PQRS'
 
+        db_table = 'tipos_pqrs'
+        ordering = ['id']
 
+# Tabla: PQRS
+class pqrs(models.Model):
 
-class Pqrs(models.Model):
-    fk_id_cliente = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name="fk_idCliente", related_name="pqrs_cliente")
-    fk_id_trabajador = models.ForeignKey(Users, on_delete=models.CASCADE, related_name="pqrs_trabajador")
-    fk_id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
-    title_pqrs = models.CharField(max_length=30, null=False, blank=False, verbose_name="titulo_pqrs",
-                                  db_column="tituloPqrs")
-    date_pqrs = models.DateField(default=datetime.now().strftime('%Y-%m-%d'), verbose_name="fecha_pqrs",
-                                 db_column="fechaPqrs")
+    # Foreign Key tabla users (id_cliente)
+    id_cliente = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_column='id_cliente',
+        db_comment="Id Cliente",
+        verbose_name="id cliente",
+        related_name="id_cliente_pqrs"
+    )
 
-    fk_id_TipoPqrs = models.ForeignKey(TipoPqrs, on_delete=models.CASCADE)
-    description = models.TextField(verbose_name="desc_pqrs", db_column="descripcion", blank=False, null=False)
-    # estados de pqrs, pendiente, respondido o en espera xd
-    # (valor, etiqueta) el valor es el valor que se almacena en la base de datos y etiqueta es lo que aparece en la interfaz
-    ESTADO_PQRS = [
-        ('Pendiente', 'Pendiente'),
-        ('Aprobado', 'Aprobado'),
-        ('Rechazado', 'Rechazado'),
-    ]
-    # por defecto el estado que va a tomar el pqrs va a ser la primera tupla osea ('Pendiente', 'Pendiente')
-    # por lo cual para acceder al primer valor para la bd se debera con ESTADO_PQRS[0][0], esto devolvera el primver valor de la tupla
+    # Foreign Key tabla users (id_trabajador)
+    id_trabajador = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_column='id_trabajador',
+        db_comment="Id Trabajador",
+        verbose_name="id trabajador",
+        related_name="id_trabajador_pqrs"
+    )
 
-    '''
-     estado pqrs es el estado que tiene el pqrs si esta en espera de respuesta, si ya esta aprobado o rechazado
-     , no si esta disponible o no o si esta borrado de la bd,
-    '''
+    # Foreign Key tipo de PQRS
+    id_tipo_pqrs = models.ForeignKey(
+        pqrs_types,
+        on_delete=models.CASCADE,
+        db_column='id_tipo_pqrs',
+        db_comment="Id Tipo de PQRS",
+        verbose_name="id tipo pqrs"
+    )
 
-    state_pqrs = models.CharField(max_length=12, verbose_name="estado_pqrrs", choices=ESTADO_PQRS,
-                                  default=ESTADO_PQRS[0][0], db_column="estadoPqrs")
-    answer_pqrs = models.TextField(default="", verbose_name="resp_pqrs", db_column="respuesta", null=True)
-    date_creation = models.DateTimeField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True)
+    # Foreign Key tabla estados
+    id_estado = models.ForeignKey(
+        states,
+        on_delete=models.CASCADE,
+        db_column='id_estado',
+        db_comment="Id Estado",
+        verbose_name="id estado"
+    )
+
+    # Campo Descripcion
+    descripcion = models.TextField(
+        db_comment="Descripcion de la PQRS",
+        verbose_name="descripcion"
+    )
+
+    # Campo Respuesta
+    respuesta = models.TextField(
+        db_comment="Respuesta de la PQRS",
+        verbose_name="respuesta"
+    )
+
+    # Campo Fecha de creacion
+    fecha_creacion = models.DateTimeField(
+        auto_now_add=True,
+        db_comment="Fecha de creacion",
+        verbose_name="Fecha de creacion"
+    )
+
+    # Campo Fecha de actualizacion
+    fecha_actualizacion = models.DateTimeField(
+        auto_now=True,
+        db_comment="Fecha de actualizacion",
+        verbose_name="Fecha de actualizacion"
+    )
 
     def __str__(self):
-        return self.title_pqrs
+        return self.id_cliente
+    
+    # Metadatos de la tabla
+    class Meta:
+        verbose_name = 'PQRS'
+        verbose_name_plural = 'PQRS'
+
+        db_table = 'pqrs'
+        ordering = ['id']
+

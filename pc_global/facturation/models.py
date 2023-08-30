@@ -1,121 +1,268 @@
 from django.db import models
-# importamos la clase de usuario
-from landing.models import Users
+from django.contrib.auth.models import User
 
-# importamos todas las clases del inventario si se necesitan trabajar con ellas xd
-from inventory.models import UnidadesProductos
-from datetime import datetime
+from landing.models import states
+from landing.models import addresses
 
+# Tabla: Facturas Compra
+class receiptBuy(models.Model):
 
-# Create your models here.
+    # Campo: Número de Factura
+    numero_factura = models.CharField(
+        max_length=15,
+        verbose_name="numero de factura",
+        db_comment="Número de la factura de compra",
+        unique=True
+    )
 
-class FacturasCompra(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name="id_facturas_compra", db_comment="Llave Primaria")
-    # aca la verdad no se por que la fecha de compra es unica pero igual lo pondre xd
-    fecha_compra = models.DateTimeField(null=False, unique=True, blank=False,
-                                        db_comment="fecha y hora de ejecucion de la compra")
-    fk_idTrabajador = models.ForeignKey(Users, on_delete=models.CASCADE, db_column="fk_id_trabajador_solicitante",
-                                        db_comment="Fk Id Trabajador que realizo la compra",
-                                        related_name="id_trabajador")
+    # Campo: Fecha de Compra
+    fecha_compra = models.DateField(
+        verbose_name="fecha de compra",
+        db_comment="Fecha de compra de la factura"
+    )
 
-    fecha_recibido = models.DateTimeField(null=False, unique=True, db_comment="Fecha  y hora recepcion del pedido")
-    fk_id_receptor = models.ForeignKey(Users, verbose_name="id_receptor",
-                                       db_comment="Fk Id Trabajador que realiza el pedido",
-                                       related_name="id_receptor", on_delete=models.CASCADE)
-    subtotal = models.CharField(max_length=10, blank=False, null=False, verbose_name="subtotal",
-                                db_comment="Subtotal factura")
-    impuestos = models.CharField(max_length=10, blank=False, null=False, verbose_name="impuestos",
-                                 db_comment="Valor impuestos")
-    total = models.CharField(blank=True, verbose_name="total_compra", max_length=10, db_comment="Valor total compra")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    # Foreigh Key: Id Trabajador Solicitante
+    id_trabajador_solicitante = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_column="id_trabajador_solicitante",
+        db_comment="Id del trabajador solicita el pedido",
+        verbose_name="id trabajador solicitante",
+        related_name="id_trabajador_solicitante_compra"
+    )
+
+    # Campo: Fecha Recepcion
+    fecha_recepcion = models.DateField(
+        verbose_name="fecha de recepcion",
+        db_comment="Fecha de recepción de la factura",
+        null=True
+    )
+
+    # Foreigh Key: Id Trabajador receptor
+    id_trabajador_receptor = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_column="id_trabajador_receptor",
+        db_comment="Id del trabajador que recibe el pedido",
+        verbose_name="id trabajador receptor",
+        related_name="id_trabajador_receptor_compra",
+        null=True
+    )
+
+    # Campo: Subtotal
+    subtotal = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="subtotal",
+        db_comment="Subtotal de la factura"
+    )
+
+    # Campo: Impuestos
+    impuestos = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="impuestos",
+        db_comment="Impuestos de la factura"
+    )
+
+    # Campo: Total
+    total = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="total",
+        db_comment="Total de la factura"
+    )
+
+    # Campo: Fecha de creacion
+    fecha_creacion = models.DateTimeField(
+        auto_now_add=True,
+        db_comment="Fecha de creacion",
+        verbose_name="Fecha de creacion"
+    )
+
+    # Campo: Fecha de actualizacion
+    fecha_actualizacion = models.DateTimeField(
+        auto_now=True,
+        db_comment="Fecha de actualizacion",
+        verbose_name="Fecha de actualizacion"
+    )
 
     def __str__(self):
-        return self.id
-
+        return self.numero_factura
+    
+    # Metadatos de la tabla
     class Meta:
-        """
-        meta es para agregar configuraciones a nuestra tabla,
-        en este caso solo la puse para cambiar el nombre de la tabla
-        """
         db_table = "facturas_compra"
+        verbose_name = "Factura de compra"
+        verbose_name_plural = "Facturas de compra"
+        ordering = ["id"]
 
+# Tabla: Tipos de entrega
+class deliveryTypes(models.Model):
 
-class FacturasVenta(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name="id_facturas_Venta")
-    fecha_venta = models.DateTimeField(null=False, blank=False, verbose_name="fecha_venta", unique=True)
-    fk_id_cliente = models.ForeignKey(Users, null=False, on_delete=models.CASCADE, verbose_name="id_cliente")
-    subtotal = models.CharField(max_length=10, blank=False, null=False, verbose_name="subtotal",
-                                db_comment="Subtotal factura")
-    iva = models.CharField(max_length=10, null=False, verbose_name="valor_iva", db_comment="Valor Iva", default="1.19")
-    total = models.CharField(blank=True, verbose_name="total_factura_venta", max_length=10, db_comment="Valor total")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    unidades_compras = models.ManyToManyField(UnidadesProductos, through="UnidadesCompras",
-                                              related_name="unidades_compras")
-
-    def __str__(self):
-        return self.id
-
-    class Meta:
-        db_table = "facturas_venta"
-
-
-class UnidadesCompras(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name="id_unidades_compras", db_comment="Llave Primaria")
-    fk_id_factura = models.ForeignKey(FacturasVenta, on_delete=models.CASCADE, verbose_name="fk_id_factura")
-    fk_id_unidad = models.ForeignKey(UnidadesProductos, on_delete=models.CASCADE, verbose_name="fk_id_unidad")
-
-    def __str__(self):
-        return self.id
-
-    class Meta:
-        db_table = "unidades_compras"
-
-
-class Direcciones(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name="id_direcciones", db_comment="Llave Primaria")
-    fk_id_cliente = models.ForeignKey(Users, db_comment="Fk id cliente", on_delete=models.CASCADE,
-                                      verbose_name="fk_id_cliente", null=False, db_column="fk_id_cliente")
-
-    direccion = models.TextField(null=False, blank=False, db_comment="Direccion de cliente", verbose_name="direccion")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.direccion
-
-
-class TipoEntrega(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name="id_tipo_entregas", db_comment="Llave Primaria")
-    nombre = models.CharField(max_length=50, unique=True, null=False, verbose_name="nombre_tipo_entrega",
-                              db_comment="Nombre tipo de entrega")
+    # Campo: Nombre
+    nombre = models.CharField(
+        max_length=50,
+        verbose_name="nombre",
+        db_comment="Nombre del tipo de entrega"
+    )
 
     def __str__(self):
         return self.nombre
-
+    
+    # Metadatos de la tabla
     class Meta:
         db_table = "tipos_entrega"
+        verbose_name = "Tipo de entrega"
+        verbose_name_plural = "Tipos de entrega"
+        ordering = ["id"]
 
+# Tabla: Facturas Venta
+class receiptSale(models.Model):
 
-class Entregas(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name="id_entregas", db_comment="Llave Primaria")
-    fk_id_factura = models.ForeignKey(FacturasVenta, on_delete=models.CASCADE, null=False, verbose_name="id_factura",
-                                      db_comment="Fk Id Factura")
-    fk_id_trabajador = models.ForeignKey(Users, on_delete=models.CASCADE, null=False, verbose_name="id_trabajador",
-                                         db_comment="Fk id trabajador")
+    # Campo: Fecha de venta
+    fecha_venta = models.DateField(
+        verbose_name="fecha de venta",
+        db_comment="Fecha de venta de la factura"
+    )
 
-    fk_id_tipo_entrega = models.ForeignKey(TipoEntrega, on_delete=models.CASCADE, null=False,
-                                           verbose_name="id_tipo_entrega",
-                                           db_comment="FK id tipo de entrega")
+    # foreigh key: Id cliente
+    id_cliente = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_column="id_cliente",
+        db_comment="Id del cliente",
+        verbose_name="id cliente",
+        related_name="id_cliente_venta"
+    )
 
-    fk_id_direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, null=False, verbose_name="id_direccion"
-                                        , db_comment="Fk id direcciones xd")
+    # Campo: Subtotal
+    subtotal = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="subtotal",
+        db_comment="Subtotal de la factura"
+    )
 
-    fecha_entrega = models.DateTimeField(null=False, verbose_name="fecha_entrega", blank=False,
-                                         db_comment="Fecha y hora de entrega")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    # Campo: IVA
+    iva = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="iva",
+        db_comment="IVA de la factura"
+    )
+
+    # Campo: Total
+    total = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="total",
+        db_comment="Total de la factura"
+    )
+
+    # Campo: Fecha de creacion
+    fecha_creacion = models.DateTimeField(
+        auto_now_add=True,
+        db_comment="Fecha de creacion",
+        verbose_name="Fecha de creacion"
+    )
+
+    # Campo: Fecha de actualizacion
+    fecha_actualizacion = models.DateTimeField(
+        auto_now=True,
+        db_comment="Fecha de actualizacion",
+        verbose_name="Fecha de actualizacion"
+    )
 
     def __str__(self):
-        return self.id
+        return self.fecha_venta
+    
+    # Metadatos de la tabla
+    class Meta:
+        db_table = "facturas_venta"
+        verbose_name = "Factura de venta"
+        verbose_name_plural = "Facturas de venta"
+        ordering = ["id"]
+
+# Tabla: Entregas
+class deliveries(models.Model):
+
+    # Foreigh Key: Id Factura
+    id_factura = models.ForeignKey(
+        receiptSale,
+        on_delete=models.CASCADE,
+        db_column="id_factura",
+        db_comment="Id de la factura",
+        verbose_name="id factura",
+        related_name="id_factura_entrega"
+    )
+
+    # Foreigh Key: Id repartidor
+    id_repartidor = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_column="id_repartidor",
+        db_comment="Id del repartidor",
+        verbose_name="id repartidor",
+        related_name="id_repartidor_entrega"
+    )
+
+    # Foreigh Key: Id tipo de entrega
+    id_tipo_entrega = models.ForeignKey(
+        deliveryTypes,
+        on_delete=models.CASCADE,
+        db_column="id_tipo_entrega",
+        db_comment="Id del tipo de entrega",
+        verbose_name="id tipo entrega",
+        related_name="id_tipo_entrega_entrega"
+    )
+
+    # Foreigh Key: Id direccion
+    id_direccion = models.ForeignKey(
+        addresses,
+        on_delete=models.CASCADE,
+        db_column="id_direccion",
+        db_comment="Id de la direccion",
+        verbose_name="id direccion",
+        related_name="id_direccion_entrega"
+    )
+
+    # Foreigh Key: Id estado
+    id_estado = models.ForeignKey(
+        states,
+        on_delete=models.CASCADE,
+        db_column="id_estado",
+        db_comment="Id del estado",
+        verbose_name="id estado",
+        related_name="id_estado_entrega"
+    )
+
+    # Campo: Fecha de entrega
+    fecha_entrega = models.DateField(
+        verbose_name="fecha de entrega",
+        db_comment="Fecha de entrega de la factura"
+    )
+
+    # Campo: Fecha de creacion
+    fecha_creacion = models.DateTimeField(
+        auto_now_add=True,
+        db_comment="Fecha de creacion",
+        verbose_name="Fecha de creacion"
+    )
+
+    # Campo: Fecha de actualizacion
+    fecha_actualizacion = models.DateTimeField(
+        auto_now=True,
+        db_comment="Fecha de actualizacion",
+        verbose_name="Fecha de actualizacion"
+    )
+
+    def __str__(self):
+        return self.id_factura
+    
+    # Metadatos de la tabla
+    class Meta:
+        db_table = "entregas"
+        verbose_name = "Entrega"
+        verbose_name_plural = "Entregas"
+        ordering = ["id"]
