@@ -7,4 +7,4 @@ def index(request):
 def categorias(request, categoria):
     categoria_result = categories.objects.get(slug=categoria)
     productos = products.objects.filter(categoria__slug=categoria_result.slug)
-    return render(request, 'productos/categorias.html',{"categoria": categoria_result, "productos": productos})
+    return render(request, 'landing/products/categories.html',{"categoria": categoria_result, "productos": productos})
