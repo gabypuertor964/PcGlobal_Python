@@ -17,10 +17,10 @@ def categorias(request, categoria):
 
 def login_view(request):
         if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+            input_username = request.POST.get('username')
+            input_password = request.POST.get('password')
 
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=input_username, password=input_password)
             if user:
                 login(request, user)
                 messages.success(request, 'Bienvenido {}'.format(user.username))
