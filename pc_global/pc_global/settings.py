@@ -87,6 +87,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
+            'unix_socket': '/opt/lampp/var/mysql/mysql.sock',
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
         },
     }
