@@ -141,4 +141,4 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'landing.userCustom'
+AUTH_USER_MODEL = 'landing.UserCustom'

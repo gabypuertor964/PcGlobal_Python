@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
 # Tabla: Tipos de Documento
-class docTypes(models.Model):
+class DocTypes(models.Model):
 
     # Campo Nombre
     nombre = models.CharField(
@@ -33,7 +33,7 @@ class docTypes(models.Model):
         ordering = ['id']
 
 # Tabla: Generos
-class genders(models.Model):
+class Genders(models.Model):
   
     # Campos Personalizados
     nombre = models.CharField(
@@ -54,7 +54,7 @@ class genders(models.Model):
         ordering = ['id']
 
 #Tabla: Areas
-class areas(models.Model):
+class Areas(models.Model):
 
     # Campo Nombre
     nombre = models.CharField(
@@ -74,7 +74,7 @@ class areas(models.Model):
         ordering = ['id']
     
 #Tabla: estados
-class states(models.Model):
+class States(models.Model):
 
     # Campo Nombre
     nombre = models.CharField(
@@ -83,7 +83,7 @@ class states(models.Model):
 
     # Llave Foranea tabla areas
     id_area = models.ForeignKey(
-        areas,
+        Areas,
         on_delete=models.CASCADE,
         db_column='id_area',
         db_comment="Llave foranea tabla areas",
@@ -102,11 +102,11 @@ class states(models.Model):
         ordering = ['id']
 
 # Tabla: Usuarios
-class userCustom(AbstractUser):
+class UserCustom(AbstractUser):
 
     # Foreign Key: id genero
     id_genero = models.ForeignKey(
-        genders,
+        Genders,
         on_delete=models.CASCADE,
         db_column='id_genero',
         db_comment="Llave foranea tabla generos",
@@ -117,7 +117,7 @@ class userCustom(AbstractUser):
 
     # Foreign key: Id tipo documento
     id_tipo_documento = models.ForeignKey(
-        docTypes,
+        DocTypes,
         on_delete=models.CASCADE,
         db_column='id_tipo_documento',
         db_comment="Llave foranea tabla tipos documento",
@@ -152,7 +152,7 @@ class userCustom(AbstractUser):
 
     # Foreing Key: Id Estado
     id_estado = models.ForeignKey(
-        states,
+        States,
         on_delete=models.CASCADE,
         db_column='id_estado',
         db_comment="Llave foranea tabla estados",
@@ -187,7 +187,7 @@ class userCustom(AbstractUser):
         ordering = ['id']
 
 #Tabla: Direcciones
-class addresses(models.Model):
+class Addresses(models.Model):
 
     # Foreign Key tabla users (id_cliente)
     id_cliente = models.ForeignKey(
