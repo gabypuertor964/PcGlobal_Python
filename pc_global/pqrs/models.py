@@ -1,5 +1,5 @@
 from django.db import models
-from landing.models import states
+from landing.models import States
 from django.conf import settings
 
 # Tabla: Tipo de PQRS
@@ -57,7 +57,7 @@ class Pqrs(models.Model):
 
     # Foreign Key tabla estados
     id_estado = models.ForeignKey(
-        states,
+        States,
         on_delete=models.CASCADE,
         db_column='id_estado',
         db_comment="Id Estado",

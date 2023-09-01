@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
 
-from landing.models import states
-from landing.models import addresses
+from landing.models import States
+from landing.models import Addresses
 
 # Tabla: Facturas Compra
 class ReceiptBuy(models.Model):
@@ -219,7 +219,7 @@ class Deliveries(models.Model):
 
     # Foreigh Key: Id direccion
     id_direccion = models.ForeignKey(
-        addresses,
+        Addresses,
         on_delete=models.CASCADE,
         db_column="id_direccion",
         db_comment="Id de la direccion",
@@ -229,7 +229,7 @@ class Deliveries(models.Model):
 
     # Foreigh Key: Id estado
     id_estado = models.ForeignKey(
-        states,
+        States,
         on_delete=models.CASCADE,
         db_column="id_estado",
         db_comment="Id del estado",
