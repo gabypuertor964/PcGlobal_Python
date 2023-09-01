@@ -58,3 +58,7 @@ nav{
   border: 0.5px solid #9B9E9C;
   border-radius: 8px;
 }
+
+.login-container .img img{
+  height: 585px;
+}
