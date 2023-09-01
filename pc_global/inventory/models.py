@@ -1,5 +1,5 @@
 from django.db import models
-from facturation.models import receiptBuy
+from facturation.models import ReceiptBuy
 
 # Tabla: Categorias
 class categories(models.Model):
@@ -159,7 +159,7 @@ class unitsProducts(models.Model):
 
     # Foreing Key: Id Factura Compra
     id_factura_compra = models.ForeignKey(
-        receiptBuy,
+        ReceiptBuy,
         on_delete=models.CASCADE,
         db_column='id_factura_compra',
         db_comment="Id Factura Compra",
@@ -196,7 +196,7 @@ class unitsBuy(models.Model):
 
     # Foreigh Key: Id Factura
     id_factura = models.ForeignKey(
-        receiptBuy,
+        ReceiptBuy,
         on_delete=models.CASCADE,
         db_column="id_factura",
         db_comment="Id de la factura",

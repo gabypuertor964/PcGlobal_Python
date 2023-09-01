@@ -1,8 +1,8 @@
 from django.contrib import admin
-from facturation.models import receiptBuy, deliveryTypes, receiptSale, deliveries
+from facturation.models import ReceiptBuy, DeliveryTypes, ReceiptSale, Deliveries
 
 # Register your models here.
-admin.site.register(receiptBuy)
-admin.site.register(deliveryTypes)
-admin.site.register(receiptSale)
-admin.site.register(deliveries)
+admin.site.register(ReceiptBuy)
+admin.site.register(DeliveryTypes)
+admin.site.register(ReceiptSale)
+admin.site.register(Deliveries)
