@@ -17,10 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from landing import views
+from django.urls import include
 
 urlpatterns = [
+
+    # Url Admin Panel
     path('admin/', admin.site.urls, name='admin:index'),
+
+    # Urls Landing
     path('', views.index, name='index'),
     path('categorias/<categoria>/', views.categorias, name='categorias'),
-    path('login', views.login_view, name='login'),
+
+    # Urls Authentication
+    path('auth/', include('django.contrib.auth.urls'))
 ]
