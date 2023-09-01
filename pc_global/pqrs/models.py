@@ -3,7 +3,7 @@ from landing.models import states
 from django.conf import settings
 
 # Tabla: Tipo de PQRS
-class pqrs_types(models.Model):
+class PqrsTypes(models.Model):
 
     # Campo Nombre
     nombre = models.CharField(
@@ -24,7 +24,7 @@ class pqrs_types(models.Model):
         ordering = ['id']
 
 # Tabla: PQRS
-class pqrs(models.Model):
+class Pqrs(models.Model):
 
     # Foreign Key tabla users (id_cliente)
     id_cliente = models.ForeignKey(
@@ -48,7 +48,7 @@ class pqrs(models.Model):
 
     # Foreign Key tipo de PQRS
     id_tipo_pqrs = models.ForeignKey(
-        pqrs_types,
+        PqrsTypes,
         on_delete=models.CASCADE,
         db_column='id_tipo_pqrs',
         db_comment="Id Tipo de PQRS",
