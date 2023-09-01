@@ -19,7 +19,8 @@ from django.urls import path
 from landing import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin:index'),
     path('', views.index, name='index'),
     path('categorias/<categoria>/', views.categorias, name='categorias'),
+    path('login', views.login_view, name='login'),
 ]

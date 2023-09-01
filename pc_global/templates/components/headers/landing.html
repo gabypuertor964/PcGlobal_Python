@@ -8,7 +8,7 @@
   
             <!-- Logo #1 (Para pantallas más grandes que las de celular) -->
             <div class="nav-logo-pag pe-10 py-2 hidden sm:flex">
-                <a href="" class="text-white hover:text-gray-400">
+                <a href="{% url 'index' %}" class="text-white hover:text-gray-400">
                     <p>Logo</p>
                 </a>
             </div>
@@ -40,7 +40,7 @@
     
                 <!-- Enlaces de login y carrito -->
                 <div class="nav-login hidden lg:flex gap-4">
-                    <a href="" class="hover:text-gray-200">
+                    <a href="{% url 'login' %}" class="hover:text-gray-200">
                         <i class="fa-regular fa-user"></i>
                     </a>
 
