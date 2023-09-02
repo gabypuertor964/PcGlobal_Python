@@ -1,9 +1,9 @@
 from django.contrib import admin
-from landing.models import docTypes,genders,areas,states,addresses
+from landing.models import DocTypes,Genders,Areas,States,Addresses
 
 # Register your models here.
-admin.site.register(docTypes)
-admin.site.register(genders)
-admin.site.register(areas)
-admin.site.register(states)
-admin.site.register(addresses)
+admin.site.register(DocTypes)
+admin.site.register(Genders)
+admin.site.register(Areas)
+admin.site.register(States)
+admin.site.register(Addresses)
