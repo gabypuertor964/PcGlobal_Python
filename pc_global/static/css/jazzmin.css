@@ -1,0 +1,84 @@
+.main-sidebar {
+    --tw-bg-opacity: 1;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active{
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+    color: #c2c7d0;;
+}
+
+.btn-success {
+    --tw-bg-opacity: 1;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity));
+}
+
+.btn-info {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity));
+    color: rgb(55 48 163 / var(--tw-bg-opacity)) !important;
+}
+
+.btn-info:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity));
+    color: rgb(240 249 255 / var(--tw-bg-opacity)) !important;
+}
+
+.btn-info:focus {
+    --tw-bg-opacity: 1;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity)) !important;
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity)) !important;
+    color: rgb(240 249 255 / var(--tw-bg-opacity)) !important;
+}
+
+.btn-info:active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 48 163 / var(--tw-bg-opacity)) !important;
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity)) !important;
+}
+
+/* Botón en estado hover (al pasar el mouse) */
+.btn-success:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+    border-color: rgb(79 70 229 / var(--tw-bg-opacity));
+}
+
+.btn-success:focus {
+    --tw-bg-opacity: 1;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity)) !important;
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity)) !important;
+}
+
+/* Botón en estado activo (cuando se hace clic) */
+.btn-success:active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(99 102 241 / var(--tw-bg-opacity)) !important;
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity)) !important;
+}
+
+/* .btn-info{} */
+
+[class*=sidebar-dark] .brand-link{
+    --tw-bg-opacity: 1;
+    border-bottom: 1px solid rgb(240 249 255 / var(--tw-bg-opacity));
+}
+
+[class*=sidebar-dark] .user-panel{
+    --tw-bg-opacity: 1;
+    border-bottom: 1px solid rgb(240 249 255 / var(--tw-bg-opacity));  
+}
+
+.accent-primary .dropdown-item.active, .accent-primary .dropdown-item:active{
+    --tw-bg-opacity: 1;
+    background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}   
