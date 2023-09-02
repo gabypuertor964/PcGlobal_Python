@@ -6,4 +6,4 @@ class FacturationConfig(AppConfig):
     name = 'facturation'
 
     # Facturacion
-    verbose_name="Facturación"
+    verbose_name="Facturacion"
