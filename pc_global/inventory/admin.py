@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inventory.models import categories, brands, products, unitsProducts,unitsBuy
+from inventory.models import Categories, Brands, Products, UnitsProducts,UnitsBuy
 
 from django.utils.text import slugify
 
@@ -20,8 +20,8 @@ class adminProduct(admin.ModelAdmin):
         super().save_model(request, obj, form, change) 
 
 # Register your models here.
-admin.site.register(categories, adminCategory)
-admin.site.register(brands)
-admin.site.register(products, adminProduct)
-admin.site.register(unitsProducts)
-admin.site.register(unitsBuy)
+admin.site.register(Categories, adminCategory)
+admin.site.register(Brands)
+admin.site.register(Products, adminProduct)
+admin.site.register(UnitsProducts)
+admin.site.register(UnitsBuy)

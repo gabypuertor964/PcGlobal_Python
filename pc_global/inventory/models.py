@@ -1,8 +1,8 @@
 from django.db import models
-from facturation.models import receiptBuy
+from facturation.models import ReceiptBuy
 
 # Tabla: Categorias
-class categories(models.Model):
+class Categories(models.Model):
 
     # Campo Nombre
     nombre = models.CharField(
@@ -30,7 +30,7 @@ class categories(models.Model):
         ordering = ['id']
     
 # Tabla: marcas
-class brands(models.Model):
+class Brands(models.Model):
 
     # Campo Nombre
     nombre = models.CharField(
@@ -51,11 +51,11 @@ class brands(models.Model):
         ordering = ['id']
     
 # Tabla: Productos
-class products(models.Model):
+class Products(models.Model):
 
     # Foreing Key: Id Categoria
     categoria = models.ForeignKey(
-        categories,
+        Categories,
         on_delete=models.CASCADE,
         db_column='id_categoria',
         db_comment="Id Categoria",
@@ -64,7 +64,7 @@ class products(models.Model):
 
     # Foreing Key: Id Marca
     marca = models.ForeignKey(
-        brands,
+        Brands,
         on_delete=models.CASCADE,
         db_column='id_marca',
         db_comment="Id Marca",
@@ -139,11 +139,11 @@ class products(models.Model):
         ordering = ['id']
 
 # Tabla: Unidades de Productos
-class unitsProducts(models.Model):
+class UnitsProducts(models.Model):
     
     # Foreing Key: Id Producto
     id_producto = models.ForeignKey(
-        products,
+        Products,
         on_delete=models.CASCADE,
         db_column='id_producto',
         db_comment="Id Producto",
@@ -159,7 +159,7 @@ class unitsProducts(models.Model):
 
     # Foreing Key: Id Factura Compra
     id_factura_compra = models.ForeignKey(
-        receiptBuy,
+        ReceiptBuy,
         on_delete=models.CASCADE,
         db_column='id_factura_compra',
         db_comment="Id Factura Compra",
@@ -192,11 +192,11 @@ class unitsProducts(models.Model):
         ordering = ['id']
 
 # Tabla unidades Compra
-class unitsBuy(models.Model):
+class UnitsBuy(models.Model):
 
     # Foreigh Key: Id Factura
     id_factura = models.ForeignKey(
-        receiptBuy,
+        ReceiptBuy,
         on_delete=models.CASCADE,
         db_column="id_factura",
         db_comment="Id de la factura",
@@ -206,7 +206,7 @@ class unitsBuy(models.Model):
 
     # Foreigh Key: Id Producto
     id_producto = models.ForeignKey(
-        unitsProducts,
+        UnitsProducts,
         on_delete=models.CASCADE,
         db_column="id_producto",
         db_comment="Id del producto",

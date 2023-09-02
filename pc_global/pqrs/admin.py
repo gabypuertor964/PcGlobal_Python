@@ -1,6 +1,6 @@
 from django.contrib import admin
-from pqrs.models import pqrs,pqrs_types
+from pqrs.models import Pqrs,PqrsTypes
 
 # Register your models here.
-admin.site.register(pqrs)
-admin.site.register(pqrs_types)
+admin.site.register(Pqrs)
+admin.site.register(PqrsTypes)

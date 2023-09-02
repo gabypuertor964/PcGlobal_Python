@@ -1,11 +1,11 @@
 from django.db import models
 from django.conf import settings
 
-from landing.models import states
-from landing.models import addresses
+from landing.models import States
+from landing.models import Addresses
 
 # Tabla: Facturas Compra
-class receiptBuy(models.Model):
+class ReceiptBuy(models.Model):
 
     # Campo: Número de Factura
     numero_factura = models.CharField(
@@ -98,7 +98,7 @@ class receiptBuy(models.Model):
         ordering = ["id"]
 
 # Tabla: Tipos de entrega
-class deliveryTypes(models.Model):
+class DeliveryTypes(models.Model):
 
     # Campo: Nombre
     nombre = models.CharField(
@@ -118,7 +118,7 @@ class deliveryTypes(models.Model):
         ordering = ["id"]
 
 # Tabla: Facturas Venta
-class receiptSale(models.Model):
+class ReceiptSale(models.Model):
 
     # Campo: Fecha de venta
     fecha_venta = models.DateField(
@@ -185,11 +185,11 @@ class receiptSale(models.Model):
         ordering = ["id"]
 
 # Tabla: Entregas
-class deliveries(models.Model):
+class Deliveries(models.Model):
 
     # Foreigh Key: Id Factura
     id_factura = models.ForeignKey(
-        receiptSale,
+        ReceiptSale,
         on_delete=models.CASCADE,
         db_column="id_factura",
         db_comment="Id de la factura",
@@ -209,7 +209,7 @@ class deliveries(models.Model):
 
     # Foreigh Key: Id tipo de entrega
     id_tipo_entrega = models.ForeignKey(
-        deliveryTypes,
+        DeliveryTypes,
         on_delete=models.CASCADE,
         db_column="id_tipo_entrega",
         db_comment="Id del tipo de entrega",
@@ -219,7 +219,7 @@ class deliveries(models.Model):
 
     # Foreigh Key: Id direccion
     id_direccion = models.ForeignKey(
-        addresses,
+        Addresses,
         on_delete=models.CASCADE,
         db_column="id_direccion",
         db_comment="Id de la direccion",
@@ -229,7 +229,7 @@ class deliveries(models.Model):
 
     # Foreigh Key: Id estado
     id_estado = models.ForeignKey(
-        states,
+        States,
         on_delete=models.CASCADE,
         db_column="id_estado",
         db_comment="Id del estado",

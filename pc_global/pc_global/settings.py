@@ -118,6 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-ES'
 
+# Zona Horaria Aplicativo
 TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
@@ -141,4 +142,8 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'landing.userCustom'
+# Definicion de modelo de usuario personalizado
+AUTH_USER_MODEL = 'landing.UserCustom'
+
+# Definicion Url de redireccionamiento al loguearse
+LOGIN_REDIRECT_URL = '/admin'
