@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,54 @@ INSTALLED_APPS = [
     'pqrs',
     'landing'
 ]
+
+# Configuraciones para Django
+
+JAZZMIN_SETTINGS = {
+    "site_title": "PcGlobal",
+    
+    "site_header": "PcGlobal",
+    
+    "site_brand": "PcGlobal",
+    
+    # "site_logo": "img/landing/f-2.jpg",
+        
+    "login_logo": None,
+
+    
+    "welcome_sign": "Bienvendid@ al panel de PcGlobal",
+    
+     "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "landing"},
+        {"app": "facturation"},
+        {"app": "inventory"},
+        {"app": "pqrs"},
+    ],
+      "usermenu_links": [
+        {"model": "auth.user"}
+    ],
+    "navigation_expanded": False,
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+    },
+    "use_google_fonts_cdn": True,
+    "default_icon_parents": "fas fa-cog",
+    "default_icon_children": "fas fa-edit",
+    "copyright": "PcGlobal Ltda",
+    
+    "order_with_respect_to": ["auth", "landing", "facturation", "inventory",  "pqrs"],
+    
+    "custom_css": "css/jazzmin.css",
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,6 +167,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-ES'
 
+# Zona Horaria Aplicativo
 TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
@@ -141,4 +191,8 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Definicion de modelo de usuario personalizado
 AUTH_USER_MODEL = 'landing.UserCustom'
+
+# Definicion Url de redireccionamiento al loguearse
+LOGIN_REDIRECT_URL = '/admin'
