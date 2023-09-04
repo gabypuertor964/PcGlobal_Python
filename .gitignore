@@ -39,3 +39,5 @@ node_modules/
 # --------------------
 migrations/
 style.min.css
+public/
+public/static/

@@ -223,3 +223,4 @@ class UnitsBuy(models.Model):
         verbose_name = "Unidad de compra"
         verbose_name_plural = "Unidades de compra"
         ordering = ["id"]
+

@@ -24,11 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-anxxo-(u5@mrx42=1%o)++$8)s12^sr+=!51_8%u$$epk8exvo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
-# Application definition
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -39,13 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'authentication',
     'facturation',
     'inventory',
     'pqrs',
     'landing'
 ]
-
-# Configuraciones para Django
 
 JAZZMIN_SETTINGS = {
     "site_title": "PcGlobal",
@@ -95,6 +92,7 @@ JAZZMIN_SETTINGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,7 +120,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pc_global.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -192,7 +189,9 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Definicion de modelo de usuario personalizado
-AUTH_USER_MODEL = 'landing.UserCustom'
+AUTH_USER_MODEL = 'authentication.UserCustom'
 
 # Definicion Url de redireccionamiento al loguearse
 LOGIN_REDIRECT_URL = '/admin'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
