@@ -1,10 +1,23 @@
 from django.shortcuts import render
 from inventory.models import Products, Categories
+#from django.http import Http404
+from django.http import HttpResponse
 
 def index(request):
     return render(request, 'landing/index.html')
 
-def categorias(request, categoria):
-    categoria_result = Categories.objects.get(slug=categoria)
-    productos = Products.objects.filter(categoria__slug=categoria_result.slug)
-    return render(request, 'landing/products/categories.html',{"categoria": categoria_result, "productos": productos})
+def categories(request, category_name):
+
+    try:
+        # Get the category object
+        category = Categories.objects.get(slug=category_name)
+
+    # If we can't find the category, raise an HTTP 404 error
+    except Categories.DoesNotExist:
+        return HttpResponse("Categoria no encontrada")
+
+    # Get the products for the category
+    products = Products.objects.filter(categoria__slug="tarjetas-graficas").select_related('marca')
+
+    # Render the page
+    return render(request, 'landing/products/categories.html',{"category": category, "products": products})
