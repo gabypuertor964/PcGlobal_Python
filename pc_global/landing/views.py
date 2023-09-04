@@ -20,4 +20,4 @@ def categories(request, category_name):
     products = Products.objects.filter(categoria__slug="tarjetas-graficas").select_related('marca')
 
     # Render the page
-    return render(request, 'categories.html',{"category": category, "products": products})
+    return render(request, 'products/categories.html',{"category": category, "products": products})
