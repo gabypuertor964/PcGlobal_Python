@@ -1,0 +1,15 @@
+{# Importacion Archivos estaticos (Resources)#}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}Default{% endblock title %}</title>
+</head>
+<body class="flex justify-center items-center h-screen uppercase text-xl dark:bg-slate-800 text-gray-400 gap-3">
+    {% block main %}{% endblock main %}
+</body>
+</html>

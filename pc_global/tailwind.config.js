@@ -2,8 +2,26 @@
 module.exports = {
   content: [
     './templates/**/*.html',
-    './templates/**/**/*.html',
-    './templates/**/**/**/*.html'
+
+    './landing/templates/**/*.html',
+    './landing/templates/**/**/*.html',
+    './landing/templates/**/**/**/*.html',
+
+    './authentication/templates/**/*.html',
+    './authentication/templates/**/**/*.html',
+    './authentication/templates/**/**/**/*.html',
+
+    './facturation/templates/**/*.html',
+    './facturation/templates/**/**/*.html',
+    './facturation/templates/**/**/**/*.html',
+
+    './pqrs/templates/**/*.html',
+    './pqrs/templates/**/**/*.html',
+    './pqrs/templates/**/**/**/*.html',
+
+    './inventory/templates/**/*.html',
+    './inventory/templates/**/**/*.html',
+    './inventory/templates/**/**/**/*.html',
   ],
   theme: {
     extend: {},
