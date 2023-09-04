@@ -29,7 +29,7 @@
     <body class="{% block body_class %}{% endblock %}">
 
         {# Importacion Header #}
-        {% include 'components/headers/landing.html' %}
+        {% include 'components/header.html' %}
         
         <!-- Contenido Pricnipal-->
         <main class="{% block main_class %}{% endblock %}">
@@ -40,7 +40,7 @@
         </main>
 
         {# Importacion Footer #}
-        {% include 'components/footer.html' %}
+        {% include 'footer.html' %}
 
         <!-- Carga JS Personalizado -->
         <script src="{% static 'js/app.js' %}"></script>

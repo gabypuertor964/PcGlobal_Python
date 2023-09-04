@@ -4,7 +4,7 @@ from inventory.models import Products, Categories
 from django.http import HttpResponse
 
 def index(request):
-    return render(request, 'landing/index.html')
+    return render(request, 'index.html')
 
 def categories(request, category_name):
 
@@ -20,4 +20,4 @@ def categories(request, category_name):
     products = Products.objects.filter(categoria__slug="tarjetas-graficas").select_related('marca')
 
     # Render the page
-    return render(request, 'landing/products/categories.html',{"category": category, "products": products})
+    return render(request, 'categories.html',{"category": category, "products": products})

@@ -1,11 +1,11 @@
 {# Extension Layout principal#}
-{% extends 'layouts/landing.html' %}
+{% extends 'landing_layout.html' %}
 
 {# Se usa el "load static" para hacer uso de archivos estáticos #}
 {% load static %}
 
 {# Declaracion comlemento titulo pagina #}
-{% block title_header  %}Home{% endblock  %}
+{% block title_header %}Home{% endblock  %}
 
 {# Declaracion Clases Body #}
 {% block body_class %}flex flex-col min-h-screen bg-gray-100{% endblock %}
