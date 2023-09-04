@@ -21,3 +21,11 @@ urlpatterns = [
 # Static and Media URLs (Only for Production)
 if settings.DEBUG is False:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Error Handlers / Custom Error Pages
+handler404 = 'landing.views.handler404'
+handler500 = 'landing.views.handler500'
+handler403 = 'landing.views.handler403'
+handler400 = 'landing.views.handler400'
+handler401 = 'landing.views.handler401'
+handler408 = 'landing.views.handler408'

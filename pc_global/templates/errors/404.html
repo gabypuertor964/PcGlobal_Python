@@ -1,0 +1,7 @@
+404 Not Found: Se muestra cuando un usuario intenta acceder a una URL que no existe en tu aplicación. Personalizar esta página permite mantener la consistencia en el diseño y ofrecer opciones útiles al usuario, como un enlace a la página de inicio o una barra de búsqueda.
+
+{% if exception %}
+    <p>{{ exception }}</p>
+{% else %}
+    <p>Error 404: Página no encontrada.</p>
+{% endif %}
