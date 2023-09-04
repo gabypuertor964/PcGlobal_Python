@@ -188,7 +188,7 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Definicion de modelo de usuario personalizado
-AUTH_USER_MODEL = 'landing.UserCustom'
+AUTH_USER_MODEL = 'authentication.UserCustom'
 
 # Definicion Url de redireccionamiento al loguearse
 LOGIN_REDIRECT_URL = '/admin'

@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from authentication.models import Addresses
 from landing.models import States
-from landing.models import Addresses
 
 # Tabla: Facturas Compra
 class ReceiptBuy(models.Model):
