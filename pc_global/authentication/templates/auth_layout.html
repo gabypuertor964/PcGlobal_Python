@@ -16,11 +16,14 @@
         <!-- Titulo Principal Pagina web (Nombre empresa + Titulo Personalizado)-->
         <title>{% block title_header %}Default{% endblock %} - PcGlobal</title>        
 
-        <!-- Importacion Fontawesome -->
+        <!-- Include Fontawesome -->
         <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 
-        <!-- Importacion Hoja de estilos personalizada -->
+        <!-- Include General Stylesheet -->
         <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+
+        <!-- Include App Stylesheet -->
+        <link rel="stylesheet" href="{% static 'authentication/style.css' %}">
     </head>
     <body class="{% block body_class %}{% endblock %}">
         
@@ -31,8 +34,6 @@
             {% block main%}{% endblock %}
 
         </main>
-
-        <!-- Carga JS Personalizado -->
-        <script src="{% static 'js/app.js' %}"></script>
+        
     </body>
 </html>
