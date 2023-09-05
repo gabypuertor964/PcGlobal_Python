@@ -96,6 +96,15 @@ class UserCustom(AbstractUser):
         null=True
     )
 
+    # Campo: Email
+    email = models.EmailField(
+        max_length=50,
+        db_comment="Email del usuario",
+        verbose_name="email",
+        null=True,
+        unique=True
+    )
+
     # Campo: Fecha de nacimiento
     fecha_nacimiento = models.DateField(
         db_comment="Fecha de nacimiento del usuario",
@@ -127,6 +136,11 @@ class UserCustom(AbstractUser):
         db_comment="Fecha de actualizacion",
         verbose_name="Fecha de actualizacion"
     )
+
+    # Reemplazo email x username en el login
+    USERNAME_FIELD='email'
+
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         return self.username
