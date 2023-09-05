@@ -15,5 +15,6 @@ class CustonRegistrationForm(forms.ModelForm):
             'num_tel',
             'id_tipo_documento',
             'id_genero',
-            'fecha_nacimiento'
+            'fecha_nacimiento',
+            'password'
         ]

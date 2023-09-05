@@ -20,11 +20,7 @@
 
         {% csrf_token %}
         
-        <label for="{{ form.first_name.id_for_label }}">Primer APe:</label>
-        <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" value="{{ form.username.value|default:'' }}">
-        {{ form.username.errors }}
-
-        <!-- Repite este patrón para cada campo que desees renderizar manualmente -->
+        {{form.as_p}}
 
         <input type="submit" value="Register">
     </form>
