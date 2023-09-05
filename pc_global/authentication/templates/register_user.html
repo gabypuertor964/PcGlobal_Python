@@ -1,0 +1,31 @@
+{# Extension Layout principal#}
+{% extends 'auth_layout.html' %}
+
+{# Se usa el "load static" para hacer uso de archivos estáticos #}
+{% load static %}
+
+{# Declaracion comlemento titulo pagina #}
+{% block title_header %}Login{% endblock  %}
+
+{# Declaracion Clases Body #}
+{% block body_class %}flex flex-col min-h-screen bg-gray-100{% endblock %}
+
+{# Declaracion Clases Main #}
+{% block main_class %}container my-8 text-justify mx-auto flex-grow mx-2{% endblock %}
+
+{# Contenido Principal pagina #}
+{% block main %}
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="{{ form.username.id_for_label }}">Username:</label>
+        <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" value="{{ form.username.value|default:'' }}">
+        {{ form.username.errors }}
+
+        <!-- Repite este patrón para cada campo que desees renderizar manualmente -->
+
+        <input type="submit" value="Register">
+    </form>
+
+{% endblock %}

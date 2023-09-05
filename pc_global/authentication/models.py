@@ -181,4 +181,3 @@ class Addresses(models.Model):
 
         db_table = 'direcciones'
         ordering = ['id']
-
