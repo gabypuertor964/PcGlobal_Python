@@ -143,7 +143,7 @@ class UserCustom(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self):
-        return self.username
+        return f"{self.first_name} {self.last_name}"
     
     # Metadatos de la tabla
     class Meta:
@@ -186,7 +186,7 @@ class Addresses(models.Model):
     )
 
     def __str__(self):
-        return self.id_cliente
+        return str(self.id_cliente)
     
     # Metadatos de la tabla
     class Meta:
