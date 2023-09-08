@@ -126,7 +126,7 @@ WSGI_APPLICATION = 'pc_global.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pc_global2',
+        'NAME': 'pc_global',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
