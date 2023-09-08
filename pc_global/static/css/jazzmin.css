@@ -81,4 +81,19 @@
 .accent-primary .dropdown-item.active, .accent-primary .dropdown-item:active{
     --tw-bg-opacity: 1;
     background-color: rgb(99 102 241 / var(--tw-bg-opacity));
-}   
+}
+
+.btn-secondary{
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    color: rgb(79 70 229 / var(--tw-bg-opacity)) !important;
+    border-color: rgb(79 70 229 / var(--tw-bg-opacity));
+    transition: .5s all;
+}
+
+.btn-secondary:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+    color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+    border-color: rgb(55 48 163 / var(--tw-bg-opacity));
+}

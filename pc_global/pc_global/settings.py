@@ -29,7 +29,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
+    'markdown',
     'jazzmin',
+    'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
     'pqrs',
     'landing'
 ]
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True  
 
 JAZZMIN_SETTINGS = {
     "site_title": "PcGlobal",
