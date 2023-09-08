@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from inventory.models import Products, Categories
+from django.core.paginator import Paginator
 from django.http import Http404
+import markdown
 
 def index(request):
     return render(request, 'index.html')
@@ -16,10 +18,29 @@ def categories(request, category_name):
         raise Http404("La categoria no existe")
 
     # Get the products for the category
-    products = Products.objects.filter(categoria__slug="tarjetas-graficas").select_related('marca')
+    products = Products.objects.filter(categoria__slug=category.slug)
+    page = request.GET.get('page', 1)
+    
+    try:
+        paginator = Paginator(products, 12)
+        products = paginator.page(page)
+    except:
+        raise Http404("La categoria no existe")
 
     # Render the page
-    return render(request, 'products/categories.html',{"category": category, "products": products})
+    return render(request, 'products/categories.html',{"category": category, "entity": products, "paginator": paginator,})
+
+def product_view(request, product_name):
+    
+    try:
+        product = Products.objects.get(slug=product_name)
+    except Products.DoesNotExist:
+        raise Http404("El producto no existe")
+        
+    descripcion_1_md = markdown.markdown(product.descripcion_1)
+    descripcion_2_md = markdown.markdown(product.descripcion_2)
+    
+    return render(request, 'products/product.html', {"producto": product, 'descripcion_1_md': descripcion_1_md, "descripcion_2_md": descripcion_2_md})
 
 # Error: Not Found
 def handler404(request, exception):

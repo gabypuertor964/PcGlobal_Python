@@ -1,8 +1,9 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 from authentication.models import DocTypes,Genders,Addresses,UserCustom
 
 @admin.register(DocTypes)
-class DocTypeAdmin(admin.ModelAdmin):
+class DocTypeAdmin(ImportExportModelAdmin):
 
     #Campos a mostrar
     list_display = ("id", "nombre", "siglas")

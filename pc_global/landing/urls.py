@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # Display products for a given data category
-    path('categorias/<category_name>/', views.categories, name='categorias')
+    path('categorias/<category_name>/', views.categories, name='categorias'),
+    path('productos/<product_name>/', views.product_view, name='productos'),
 ]
