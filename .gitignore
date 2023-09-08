@@ -37,8 +37,8 @@ node_modules/
 # --------------------
 # Otros
 # --------------------
-
 style.min.css
+migrations/
 
 # --------------------
 # Static Files Production
