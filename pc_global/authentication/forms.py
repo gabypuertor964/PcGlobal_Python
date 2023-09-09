@@ -1,5 +1,5 @@
-from .models import UserCustom
 from django import forms
+from .models import UserCustom,Genders,DocTypes
 
 # Form Register Manager
 class CustonRegistrationForm(forms.ModelForm):
@@ -18,3 +18,8 @@ class CustonRegistrationForm(forms.ModelForm):
             'fecha_nacimiento',
             'password'
         ]
+
+        choices = Genders.objects.values_list('id', 'nombre')
+
+        # Opciones para el campo id_tipo_documento
+        choices = DocTypes.objects.values_list('id', 'nombre')

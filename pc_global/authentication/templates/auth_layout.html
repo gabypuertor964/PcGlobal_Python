@@ -14,7 +14,10 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <!-- Titulo Principal Pagina web (Nombre empresa + Titulo Personalizado)-->
-        <title>{% block title_header %}Default{% endblock %} - PcGlobal</title>        
+        <title>{% block title_header %}Default{% endblock %} - PcGlobal</title>    
+        
+        <!-- Include Bootstrap -->
+        <link rel="stylesheet" href="{% static '/css/boostrap.css' %}">
 
         <!-- Include Fontawesome -->
         <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">

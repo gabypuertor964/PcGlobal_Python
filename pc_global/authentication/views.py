@@ -4,16 +4,37 @@ from django.views import View
 from .forms import CustonRegistrationForm
 
 class RegisterView(View):
-    # Ruta del template de registro (asegúrate de que la ruta esté correcta)
+
+    # Impotacion de los formularios
+    from . import forms
+
+    # Nombre del template a usar 
     template_name = 'register_user.html'
     
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
+
+        # Instanciamiento del formulario de registro
         form = CustonRegistrationForm()
+
+        # Renderizado del template con el formulario
         return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
+
+        # Guardado de los datos obtenidos con el metodo post
         form = CustonRegistrationForm(request.POST)
+
+        # Validacion de los datos
         if form.is_valid():
+
+            # Guardado de los datos
             form.save()
-            return redirect('login')  # Asumiendo que 'login' es el nombre correcto para la ruta de inicio de sesión en urls.py
-        return render(request, self.template_name, {'form': form})
+
+            # Redireccionamiento a la pagina de login
+            return redirect('login')
+        
+        # Obtencion de los errores
+        errors = form.errors
+
+        # Renderizado del template con el formulario y los errores
+        return render(request, self.template_name, {'form': form,'errors':errors})
