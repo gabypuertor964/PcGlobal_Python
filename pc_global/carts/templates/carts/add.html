@@ -1,0 +1,42 @@
+{# Extension Layout principal#}
+{% extends 'layouts/cart_layout.html' %}
+
+{# Se usa el "load static" para hacer uso de archivos estáticos #}
+{% load static %}
+
+{% load products_extras %}
+
+{# Declaracion comlemento titulo pagina #}
+{% block title_header %}Home{% endblock  %}
+
+{# Declaracion Clases Body #}
+{% block body_class %}flex flex-col min-h-screen bg-gray-100{% endblock %}
+
+{# Declaracion Clases Main #}
+{% block main_class %}container my-10 text-justify mx-auto flex-grow  mx-2{% endblock %}
+
+{# Contenido Principal pagina #}
+{% block main %}
+    <div class="container">
+        <div class="grid grid-cols-2">
+            <div class="flex justify-center">
+                {% if product.imagen %}
+                    <img class="w-1/2" src="/static/img/{{ product.imagen }}" alt="{{product.modelo}}">
+                {% endif %}
+            </div>
+            <div class="h-full relative">
+                <p class="text-xl text-indigo-600 font-medium">Producto agregado al carrito de compras</p>
+                <a class="hover:underline hover:text-lg transition-all duration-300" href="{% url 'productos' product.slug %}">
+                    {{product.modelo}}
+                </a>
+                <p class="price">{{product.precio|price_format}}</p>
+
+                <a href="{% url 'cart' %}" class="border-1 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white px-5 py-1 rounded transition-all duration-500 absolute bottom-0">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Ir a mi carrito de compras
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

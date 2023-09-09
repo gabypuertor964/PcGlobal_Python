@@ -22,6 +22,13 @@ module.exports = {
     './inventory/templates/**/*.html',
     './inventory/templates/**/**/*.html',
     './inventory/templates/**/**/**/*.html',
+
+    
+    './carts/templates/**/*.html',
+    './carts/templates/**/**/*.html',
+    './carts/templates/**/**/**/*.html',
+    './carts/templates/**/**/**/**/*.html',
+    './carts/templates/**/**/**/**/**/*.html',
   ],
   theme: {
     extend: {},
