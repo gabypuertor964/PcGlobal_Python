@@ -143,12 +143,7 @@ class UserCustom(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self):
-
-        # Si no tiene nombre ni apellido, se mostrara el username
-        if(self.first_name == "" and self.last_name == ""):
-            return self.username
-        else:
-            return f"{self.first_name} {self.last_name}"
+        return self.username
     
     # Metadatos de la tabla
     class Meta:

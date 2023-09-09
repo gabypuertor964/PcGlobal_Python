@@ -16,6 +16,10 @@ urlpatterns = [
 
     # Admin Panel Url
     path('admin/', admin.site.urls, name='admin:index'),
+    
+    # Shopping cart URLs
+    path('carrito/', include('carts.urls'))
+    
 ]
 
 # Static and Media URLs (Only for Production)
