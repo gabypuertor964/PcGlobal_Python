@@ -38,8 +38,7 @@ node_modules/
 # Otros
 # --------------------
 style.min.css
-migrations/
-!migrations/__init__.py
+
 
 # --------------------
 # Static Files Production
