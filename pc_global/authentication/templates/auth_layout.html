@@ -17,26 +17,41 @@
         <title>{% block title_header %}Default{% endblock %} - PcGlobal</title>    
         
         <!-- Include Bootstrap -->
-        <link rel="stylesheet" href="{% static '/css/boostrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/boostrap.css' %}">
+
+        <script src="{% static 'js/boostrap.js' %}"></script>
 
         <!-- Include Fontawesome -->
         <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 
-        <!-- Include General Stylesheet -->
-        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+        <!-- Include OverlayScrollbars (AdminLTE) -->
+        <link rel="stylesheet" href="{% static 'authentication/css/OverlayScrollbars.min.css'%}">
 
-        <!-- Include App Stylesheet -->
-        <link rel="stylesheet" href="{% static 'authentication/style.css' %}">
+        <!-- Include AdminLTE Styles -->
+        <link rel="stylesheet" href="{% static 'authentication/css/adminlte.min.css'%}">
+        
+        <!-- Include Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
     <body class="{% block body_class %}{% endblock %}">
         
         <!-- Contenido Pricnipal-->
         <main class="{% block main_class %}{% endblock %}"> 
 
-            {# Definicon bloque de contenido principal#}
-            {% block main%}{% endblock %}
+            <form method="post">
+                {% csrf_token %}
+
+                {# Definicon bloque de contenido principal#}
+                {% block form %}{% endblock %}
+            </form>
 
         </main>
+
+        {# Importacion archivos JS #}
+        <script src="{% static 'authentication/js/jquery.min.js' %}"></script>
+        <script src="{% static 'authentication/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'authentication/js/jquery.overlayScrollbars.min.js' %}"></script>
+        <script src="{% static 'authentication/js/adminlte.min.js' %}"></script>
         
     </body>
 </html>

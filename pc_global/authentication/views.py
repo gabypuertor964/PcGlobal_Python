@@ -1,40 +1,57 @@
 # Importaciones necesarias
 from django.shortcuts import render, redirect
-from django.views import View
+from django.contrib.auth import authenticate, login
 from .forms import CustonRegistrationForm
+from django.views import View
 
 class RegisterView(View):
-
-    # Impotacion de los formularios
-    from . import forms
-
-    # Nombre del template a usar 
     template_name = 'register_user.html'
     
     def get(self, request):
-
-        # Instanciamiento del formulario de registro
         form = CustonRegistrationForm()
-
-        # Renderizado del template con el formulario
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
 
-        # Guardado de los datos obtenidos con el metodo post
+        # Guardado de los datos obtenidos con el método post
         form = CustonRegistrationForm(request.POST)
 
-        # Validacion de los datos
+        # Validación de los datos
         if form.is_valid():
 
-            # Guardado de los datos
-            form.save()
+            # Obteniendo el usuario sin guardar en la base de datos
+            user = form.save(commit=False)
+            
+            # Cifrar la contraseña
+            user.set_password(form.cleaned_data['password'])
 
-            # Redireccionamiento a la pagina de login
+            # Guardar el usuario con la contraseña cifrada
+            user.save()
+
+            # Redireccionamiento a la página de login
             return redirect('login')
         
-        # Obtencion de los errores
+        # Obtención de los errores
         errors = form.errors
 
         # Renderizado del template con el formulario y los errores
-        return render(request, self.template_name, {'form': form,'errors':errors})
+        return render(request, self.template_name, {'form': form, 'errors': errors})
+
+
+class LoginView(View):
+    template_name = 'login.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        username = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('admin:index')
+        else:
+            # Añade un mensaje de error
+            return render(request, self.template_name, {'error': 'Credenciales inválidas'})
