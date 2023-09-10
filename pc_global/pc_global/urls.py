@@ -16,6 +16,9 @@ urlpatterns = [
 
     # Admin Panel Url
     path('admin/', admin.site.urls, name='admin:index'),
+
+    # Pqrs URLS
+    path('pqrs/', include('pqrs.urls'))
 ]
 
 # Static and Media URLs (Only for Production)

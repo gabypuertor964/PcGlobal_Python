@@ -1,0 +1,50 @@
+<!-- Encabezado pagina -->
+<header class="h-24 bg-indigo-600 overflow-hidden">
+
+    <!-- Menu de Navegación -->
+    <nav class="mx-4 sm:mx-12 flex font-medium text-white h-full items-center text-sm gap-x-6 gap-y-3">
+
+        <div class="nav-1 flex flex-col sm:flex-row items-center justify-between w-full h-full">
+
+            <!-- Logo #1 (Para pantallas más grandes que las de celular) -->
+            <div class="nav-logo-pag pe-10 py-2 hidden sm:flex">
+                <a href="{% url 'index' %}" class="text-white text-xl hover:text-gray-400 hover:scale-105">
+                    <i class="fa-sharp fa-solid fa-circle-arrow-left me-1"></i> Volver
+                </a>
+            </div>
+
+            <div class="tituloPagina h-full flex justify-center items-center">
+                <h1 class="text-3xl font-semibold">Gestion de mis reportes</h1>
+            </div>
+            <div class="nav-right flex gap-12 w-full sm:w-fit">
+
+                <!-- Enlaces a diferentes modulos -->
+                <div class="nav-productos justify-evenly hidden lg:flex gap-4 ps-3">
+                    <p>
+                        <a class="hover:text-gray-200" href="/#categorias">Categorías</a>
+                    </p>
+                    <p>
+                        <a class="hover:text-gray-200" href="{% url 'reports' %}">Inicio</a>
+                    </p>
+
+                    <p>
+                        <a class="hover:text-gray-200" href="{% url 'reports' %}">Compras</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </nav>
+  </header>
+  {# Links a diferentes sitios de la página usando los coponentes de Django #}
+<div class="pt-2 pb-3 hidden lg:hidden bg-indigo-600 text-white border-t" id="menu-responsive">
+  <div class="flex flex-col gap-y-1">
+
+    <div class="separador border-t my-2"></div>
+
+    <div class="pl-4 text-xs flex items-center gap-2 my-0.5">
+      <i class="fa-regular fa-user"></i>
+      <p class="font-semibold">Inicia sesión o crea una cuenta</p>
+    </div>
+
+  </div>
+</div>

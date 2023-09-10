@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Report</title>
+    <link rel="stylesheet" href="{% static 'css/boostrap.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+</head>
+<body>
+    {% include 'components/headerPqrs.html'%}
+
+    <main class="h-screen w-full flex items-center justify-center">
+        
+        {% block contenido_main %}{% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+    <script src="{% static 'js/boostrap.js' %}"></script>
+    <script>
+        
+    </script>
+</body>
+</html>
