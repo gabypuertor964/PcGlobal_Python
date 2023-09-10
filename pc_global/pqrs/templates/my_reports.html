@@ -1,0 +1,20 @@
+{% extends './layouts/pqrs_layout.html' %}
+
+{% block title_header %}Reports{% endblock %}
+
+{% block main_class %}  min-h-screen{% endblock %}
+
+{% block main %}
+    <section class="w-full flex justify-content-center items-center ">
+        <a href="{% url 'create-pqrs'%}" class="btnPqrs btnPqrs-hover"><i class="fa-solid fa-plus me-2 font-bold"></i>Crear un Reporte</a>
+    </section>
+    <hr>
+    <h2 class="text-3xl font-semibold text-center mt-6">Por el momento tienes 5 reportes hechos</h1>
+
+    <section class="grid md:grid-cols-3 mx-auto w-11/12 my-6 gap-4 sm:grid-cols-1">
+       
+        {% include 'components/divs_pqrs.html' %}
+
+        {# include 'components/modals.html'#}
+    </section>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 from landing.models import States
 from django.conf import settings
+from datetime import datetime
 
 # Tabla: Tipo de PQRS
 class PqrsTypes(models.Model):
@@ -63,17 +64,38 @@ class Pqrs(models.Model):
         db_comment="Id Estado",
         verbose_name="id estado"
     )
+    title = models.CharField(
+        max_length=50,
+        blank=False,
+        verbose_name="Titulo del Reporte",
+        db_column="tituloPqrs"
+    )
 
+    date_occurrence = models.DateField(
+        default=datetime.now().strftime('%Y-%m-%d'),
+        blank=True,
+        verbose_name="Fecha del problema",
+        db_column="fechaProblema"
+    )
     # Campo Descripcion
     descripcion = models.TextField(
         db_comment="Descripcion de la PQRS",
-        verbose_name="descripcion"
+        verbose_name="descripcion",
+    )
+
+    evidence = models.ImageField(
+        upload_to='evidence/%Y/%m/%d',
+        null=True,
+        blank=True,
+        verbose_name="Foto de lo sucedido"
     )
 
     # Campo Respuesta
     respuesta = models.TextField(
         db_comment="Respuesta de la PQRS",
-        verbose_name="respuesta"
+        verbose_name="respuesta",
+        null=True,
+        blank=True
     )
 
     # Campo Fecha de creacion
@@ -91,7 +113,7 @@ class Pqrs(models.Model):
     )
 
     def __str__(self):
-        return self.id_cliente
+        return f'{self.id_cliente} {self.title}'
     
     # Metadatos de la tabla
     class Meta:

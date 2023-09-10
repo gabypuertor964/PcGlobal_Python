@@ -1,0 +1,106 @@
+article i{
+    font-size: 30px;
+    color: white;
+    opacity: 0.60;
+    transition: all 600ms;
+}
+
+article:hover{
+    transform: scale(1.1);
+}
+
+.window-background{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(4px);
+    background-color: rgb(255, 255, 255, 0.3);
+    z-index: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.window-background-del{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(4px);
+    background-color: rgb(255, 255, 255, 0.3);
+    z-index: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.window-container{
+    position: relative;
+    background-color: #4f46e5;
+    width: 550px;
+    height: auto;
+    padding: 1.5rem;
+    border-radius: 8px;
+    animation-name: modal;
+    animation-duration: .5s;
+    box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .4);
+    z-index: 10;
+}
+
+.window-container-del{
+    position: relative;
+    background-color: #4f46e5;
+    width: 550px;
+    height: auto;
+    padding: 1.5rem;
+    border-radius: 8px;
+    animation-name: modal;
+    animation-duration: .5s;
+    box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .4);
+    z-index: 10;
+}
+
+@keyframes modal {
+    from{
+        transform: translateY(50vh);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+
+.close{
+    transition: transform 1s cubic-bezier(0, -0.42, 1, -0.41);
+    transform: translateY(60vh);
+}
+
+.close-button{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #4f46e5;
+    cursor: pointer;
+}
+
+.close-button-del{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #4f46e5;
+    cursor: pointer;
+}

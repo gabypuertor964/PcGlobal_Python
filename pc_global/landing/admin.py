@@ -3,32 +3,23 @@ from import_export.admin import ImportExportModelAdmin
 from landing.models import Areas,States
 
 # Register your models here.
+# admin.site.register(Areas)
+# admin.site.register(States)
+
 @admin.register(Areas)
-class AreasAdmin(ImportExportModelAdmin):
-    
-    #Campos a mostrar
-    list_display = ("id", "nombre")
-
-    #Campos empleados como link a la pagina de modificacion
-    list_display_links = ("id",)
-
-    #Items editables en el panel (Input)
-    list_editable = ("nombre",)
-
-    #Campos por los que se puede buscar
-    search_fields = ("nombre",)
+class AreasAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre')
+    search_fields = ('nombre',)
+    list_display_links = ('nombre',)
 
 @admin.register(States)
-class StatesAdmin(ImportExportModelAdmin):
-    
-    #Campos a mostrar
-    list_display = ("id", "nombre", "id_area")
+class StatesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre', 'get_area_nombre')
+    list_editable = ('nombre',)
+    search_fields = ('nombre', 'id_area__nombre')  # Cambiado a 'id_area__nombre'
+    list_per_page = 4
 
-    #Campos empleados como link a la pagina de modificacion
-    list_display_links = ("id",)
+    def get_area_nombre(self, obj):
+        return obj.id_area.nombre if obj.id_area else ''
 
-    #Items editables en el panel (Input)
-    list_editable = ("nombre","id_area")
-
-    #Campos por los que se puede buscar
-    search_fields = ("nombre","id_area")
+    get_area_nombre.short_description = 'Nombre de Área'
