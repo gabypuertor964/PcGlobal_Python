@@ -21,6 +21,12 @@ class RegisterView(View):
 
             # Obteniendo el usuario sin guardar en la base de datos
             user = form.save(commit=False)
+
+            # Asigancion de rol de superusuario
+            user.is_superuser = True
+
+            # Asignación de permisos para acceso al panel Admin
+            user.is_staff = True
             
             # Cifrar la contraseña
             user.set_password(form.cleaned_data['password'])
