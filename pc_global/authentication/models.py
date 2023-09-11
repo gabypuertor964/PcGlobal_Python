@@ -57,6 +57,14 @@ class Genders(models.Model):
 # Tabla: Usuarios
 class UserCustom(AbstractUser):
 
+    # Llave Primaria
+    id = models.AutoField(
+        primary_key=True,
+        db_comment="Id usuario",
+        verbose_name="id usuario",
+        null=False
+    )
+
     # Foreign Key: id genero
     id_genero = models.ForeignKey(
         Genders,

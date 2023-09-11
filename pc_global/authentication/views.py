@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CustonRegistrationForm
 from django.views import View
+from django.contrib.auth.models import Group
 
 class RegisterView(View):
     template_name = 'register_user.html'
@@ -24,27 +25,29 @@ class RegisterView(View):
 
             # Obteniendo el usuario sin guardar en la base de datos
             user = form.save(commit=False)
-
-            # Asigancion de rol de superusuario
-            user.is_superuser = True
-
-            # Asignación de permisos para acceso al panel Admin
-            user.is_staff = True
             
             # Cifrar la contraseña
             user.set_password(form.cleaned_data['password'])
 
-            # Guardar el usuario con la contraseña cifrada
+            # Guardar informacion del usuario en BD
             user.save()
+
+            # Obtener la instacia del grupo a asignar
+            group = Group.objects.get(name='cliente')
+
+            # Guardar el usuario con la contraseña cifrada
+            user.groups.add(group)
 
             # Redireccionamiento a la página de login
             return redirect('login')
-        
-        # Obtención de los errores
-        errors = form.errors
 
+        context = {
+            'view':'register',
+            'form': CustonRegistrationForm(),
+            'errrors': form.errors
+        }
         # Renderizado del template con el formulario y los errores
-        return render(request, self.template_name, {'form': form, 'errors': errors})
+        return render(request, self.template_name, context)
 
 class LoginView(View):
     template_name = 'login.html'
@@ -66,5 +69,8 @@ class LoginView(View):
             login(request, user)
             return redirect('admin:index')
         else:
-            # Añade un mensaje de error
-            return render(request, self.template_name, {'error': 'Credenciales inválidas'})
+            context={
+                'view':'login',
+                'error':'Credenciales inválidas'
+            }
+            return render(request, self.template_name, context)
