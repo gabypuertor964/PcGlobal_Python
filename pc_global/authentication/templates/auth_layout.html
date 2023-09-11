@@ -4,10 +4,12 @@
 {# Cargado de archivos estaticos #}
 {% load static %}
 
+{# Sobre escritura seccion litle AdminLTE #}
 {% block title_outer %}
     <title>{% block title%}{% endblock%} | PcGlobal</title>
 {% endblock %}
 
+{# Sobreescritura links Hojas de estilos #}
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
 {% endblock %}
