@@ -201,8 +201,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Definicion de modelo de usuario personalizado
 AUTH_USER_MODEL = 'authentication.UserCustom'
 
-# Definicion Url de redireccionamiento al loguearse
-LOGIN_REDIRECT_URL = '/admin'
-
 # Definicion Url de redireccionamiento al desloguearse
 LOGOUT_REDIRECT_URL = '/'

@@ -68,6 +68,10 @@
       <h2 class="text-center mb-10 ">Encuentra los mejores componentes al mejor precio</h2>
     </div>
 
+    {% if user.is_authenticated %}
+      <a name="" id="" class="btn btn-primary" href="{% url 'logout' %}" role="button">Button</a>
+    {% endif %}
+
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 bg-gray-100 gap-6 transition-all">
 
       <div class="flex flex-col justify-center">

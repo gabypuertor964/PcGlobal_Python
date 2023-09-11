@@ -5,6 +5,7 @@ from .forms import CustonRegistrationForm
 from django.views import View
 from django.contrib.auth.models import Group
 
+
 class RegisterView(View):
     template_name = 'register_user.html'
     
@@ -61,13 +62,35 @@ class LoginView(View):
         return render(request, self.template_name,context)
 
     def post(self, request):
+
+        #Obtener los datos del formulario
         username = request.POST.get('email')
         password = request.POST.get('password')
+
+        #Obtener instancia del usuario
         user = authenticate(username=username, password=password)
 
+        #Validar si el usuario existe
         if user is not None:
-            login(request, user)
-            return redirect('admin:index')
+
+            if user.is_superuser:
+                login(request, user)
+                return redirect('admin:index')
+            else:
+                #Obtener los grupos a los que pertenece el usuario
+                groups = user.groups.all()
+
+                # Validar que el usuario pertenezca a algun grupo
+                if not groups.exists():
+                    raise Exception('El usuario no tiene grupos asignados')
+                else:
+                    #Registrar sesion en BD
+                    login(request, user)
+
+                    for group in groups:
+                        if(group.name == 'cliente'):
+                            return redirect('index')
+
         else:
             context={
                 'view':'login',
