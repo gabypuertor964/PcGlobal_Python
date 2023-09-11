@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'markdown',
     'jazzmin',
+    'adminlte3',
     'import_export',
     'django.contrib.admin',
     'django.contrib.auth',

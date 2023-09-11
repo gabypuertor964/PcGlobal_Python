@@ -1,72 +1,13 @@
-{# Extension Layout principal#}
-{% extends 'auth_layout.html' %}
+{% extends 'adminlte/base.html' %}
 
-{# Se usa el "load static" para hacer uso de archivos estáticos #}
-{% load static %}
+<!-- Set title of app -->
+{% block title %}TestApp{% endblock %}
 
-{# Declaracion complemento titulo pagina #}
-{% block title_header %}Login{% endblock  %}
+<!-- Specify content of main body of page -->
+{% block content %}
+    <h1>Test site using django-adminlte3 pip module.</h1>
 
-{# Declaracion Clases Body #}
-{% block body_class %}login-page{% endblock %}
+    <p>Let us see how this works.</p>
 
-{# Declaracion Clases Main #}
-{% block main_class %}{% endblock %}
-
-{# Contenido Principal pagina #}
-{% block form %}
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="{% url 'index' %}">
-                <b>PcGlobal</b>
-            </a>
-        </div>
-
-        <div class="card card-outline card-primary">
-            <div class="card-header ">
-                <h3 class="card-title float-none text-center">
-                    Iniciar Sesión                    
-                </h3>
-            </div>
-            <div class="card-body login-card-body">
-                {# Mostrar error general si las credenciales son incorrectas #}
-                {% if error %}
-                    <p class="text-danger">{{ error }}</p>
-                {% endif %}
-
-                <!-- Input Email -->
-                <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control"
-                    value="{{ form.email.value|default:'' }}" placeholder="Email" autofocus>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Input Password -->
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control"
-                    value="{{ form.password.value|default:'' }}" placeholder="Contraseña">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-block btn-flat btn-primary">
-                    <span class="fas fa-sign-in-alt"></span>
-                    Acceder
-                </button>
-            </div>
-
-            <div class="card-footer">
-                <p class="my-0">
-                    ¿Aun no tienes cuenta?, <a href="{% url 'register' %}">puedes registrarte</a>
-                </p>
-            </div>
-        </div>
-    </div>
+    For docs, check out <a href="https://pypi.org/project/django-adminlte-3/">docs</a>
 {% endblock %}
