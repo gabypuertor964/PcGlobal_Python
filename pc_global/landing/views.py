@@ -5,13 +5,17 @@ from django.http import Http404
 import markdown
 
 def index(request):
-    # Get the user name
-    username = request.user.username
+    if request.user.is_authenticated:
+        # Get the user name
+        username = request.user.username
 
-    # Check if the user name exists
-    if not username:
-        # If the user name does not exist, get the user full name
-        fullname = request.user.get_full_name()
+        # Check if the user name exists
+        if not username:
+            # If the user name does not exist, get the user full name
+            fullname = request.user.get_full_name()
+    else:
+        username = None
+        fullname = None
 
     # Render the template with its context
     return render(request, 'index.html', {'username': username or fullname})
