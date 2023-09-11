@@ -7,9 +7,12 @@ from django.views import View
 class RegisterView(View):
     template_name = 'register_user.html'
     
-    def get(self, request):
-        form = CustonRegistrationForm()
-        return render(request, self.template_name, {'form': form})
+    def get(self, request): 
+        context = {
+            'view':'register',
+            'form': CustonRegistrationForm()
+        }
+        return render(request, self.template_name, context)
 
     def post(self, request):
 
@@ -42,7 +45,6 @@ class RegisterView(View):
 
         # Renderizado del template con el formulario y los errores
         return render(request, self.template_name, {'form': form, 'errors': errors})
-
 
 class LoginView(View):
     template_name = 'login.html'
