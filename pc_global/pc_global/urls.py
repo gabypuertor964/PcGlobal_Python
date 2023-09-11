@@ -16,7 +16,10 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin:index'),
 
     # Pqrs URLS
-    path('pqrs/', include('pqrs.urls'))
+    path('pqrs/', include('pqrs.urls')),
+
+    #cart URLS
+    path('carts/', include('carts.urls'))
 ]
 
 # Static and Media URLs (Only for Production)
