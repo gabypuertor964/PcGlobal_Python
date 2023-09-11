@@ -48,7 +48,12 @@ class LoginView(View):
     template_name = 'login.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+
+        #Identificador del nombre de la vista a usar
+        context={
+            'view':'login'
+        }
+        return render(request, self.template_name,context)
 
     def post(self, request):
         username = request.POST.get('email')

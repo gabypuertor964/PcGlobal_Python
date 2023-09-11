@@ -1,13 +1,35 @@
-{% extends 'adminlte/base.html' %}
+{# Extension Layout de Autenticacion #}
+{% extends 'auth_layout.html' %}
 
-<!-- Set title of app -->
-{% block title %}TestApp{% endblock %}
+{# Complemento title de la pagina #}
+{% block title %}Login{% endblock %}
 
-<!-- Specify content of main body of page -->
-{% block content %}
-    <h1>Test site using django-adminlte3 pip module.</h1>
+{# Titulo card #}
+{% block title_card %}Autenticarse para iniciar sesión{% endblock %}
 
-    <p>Let us see how this works.</p>
+{# Decalaracion de inputs a mostrar #}
+{% block inputs %}
 
-    For docs, check out <a href="https://pypi.org/project/django-adminlte-3/">docs</a>
+    <!-- Input: Correo Electrnico -->
+    <div class="input-group mb-3">
+        <input type="email" name="email" class="form-control" placeholder="Correo Electronico" autofocus>
+
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-envelope "></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input: Contraseña -->
+    <div class="input-group mb-3">
+        <input type="password" name="password" class="form-control" placeholder="Contraseña">
+
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock "></span>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,57 +1,109 @@
-{# Importacion Archivos estaticos (Resources)#}
+{# Extension Layout AdminLTE #}
+{% extends 'adminlte/login.html' %}
+
+{# Cargado de archivos estaticos #}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <!-- Codificacion de los caracteres-->
-        <meta charset="UTF-8">
+{% block title_outer %}
+    <title>{% block title%}{% endblock%} | PcGlobal</title>
+{% endblock %}
 
-        <!-- Escala de representacion en la pantalla del cliente -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+{% endblock %}
 
-        <!-- Establecer compatibilidad con Internet explorer al ejecutarlo en edge -->
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{# Sobreescritura clases adicionales Body #}
+{% block body_class %}{{view}}-page{% endblock %}
 
-        <!-- Titulo Principal Pagina web (Nombre empresa + Titulo Personalizado)-->
-        <title>{% block title_header %}Default{% endblock %} - PcGlobal</title>    
-        
-        <!-- Include Bootstrap -->
-        <link rel="stylesheet" href="{% static 'css/boostrap.css' %}">
+{# Sobreescritura seccion Body #}
+{% block body %}
 
-        <script src="{% static 'js/boostrap.js' %}"></script>
+    <div class="{{view}}-box">
 
-        <!-- Include Fontawesome -->
-        <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+        <!--Enlace Home Landing Page-->
+        <div class="login-logo">
+            <a href="{% url 'index' %}">
+                <p>
+                    <b>PcGlobal</b>
+                </p>
+            </a>
+        </div>
 
-        <!-- Include OverlayScrollbars (AdminLTE) -->
-        <link rel="stylesheet" href="{% static 'authentication/css/OverlayScrollbars.min.css'%}">
+        <!-- Visualizacion de errores -->
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
 
-        <!-- Include AdminLTE Styles -->
-        <link rel="stylesheet" href="{% static 'authentication/css/adminlte.min.css'%}">
-        
-        <!-- Include Google Font: Source Sans Pro -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    </head>
-    <body class="{% block body_class %}{% endblock %}">
-        
-        <!-- Contenido Pricnipal-->
-        <main class="{% block main_class %}{% endblock %}"> 
+                <br>Errores: </br>
+                <ul>
+                    {% for error in form.errors %}
+                        <li>
+                            <p>{{ error }}</p>
+                        </li>
+                    {% endfor %}    
+                </ul>
+            </div>
+        {% endif %}
 
-            <form method="post">
-                {% csrf_token %}
+        <!-- Formulario Login -->
+        <div class="card card-outline card-primary">
 
-                {# Definicon bloque de contenido principal#}
-                {% block form %}{% endblock %}
-            </form>
+            <!--Encabezado Card-->
+            <div class="card-header">
+                <h3 class="card-title float-none text-center">
+                    {% block title_card %}{% endblock %}
+                </h3>
+            </div>
 
-        </main>
+            <!--Cuerpo Card-->
+            <div class="card-body login-card-body {% block card_class %}{% endblock %}">
+                <form method="post">
 
-        {# Importacion archivos JS #}
-        <script src="{% static 'authentication/js/jquery.min.js' %}"></script>
-        <script src="{% static 'authentication/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{% static 'authentication/js/jquery.overlayScrollbars.min.js' %}"></script>
-        <script src="{% static 'authentication/js/adminlte.min.js' %}"></script>
-        
-    </body>
-</html>
+                    <!--Token de seguridad-->	
+                    {% csrf_token %}
+
+                    {# Bloque de Inputs a Generar #}
+                    {% block inputs %}{% endblock %}
+
+                    <!-- Boton Login -->
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-block btn-flat btn-primary indigo-600">
+
+                                {# Generado dinamico del boton submit#}
+                                {% if view == "login" %}
+
+                                    <span class="fas fa-sign-in-alt"></span>
+                                    Iniciar sesión
+                                    
+                                {% elif view == "register" %}
+
+                                    <span class="fas fa-sign-in-alt"></span>
+                                    Registrarse
+
+                                {% endif %}
+
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        <!-- Enlace Formulario de Registro -->
+        <div class="card-footer">
+            <p class="my-0">
+
+                {% if view == "login" %}
+                    <a href="{% url 'register' %}">
+                        ¿No tienes una cuenta? Registrate
+                    </a>
+                {% elif view == "register" %}
+                    <a href="{% url 'login' %}">
+                        ¿Ya tienes una cuenta? Inicia sesión
+                    </a>
+                {% endif %}
+                
+            </p>
+        </div>
+
+    </div>    
+{% endblock %}
