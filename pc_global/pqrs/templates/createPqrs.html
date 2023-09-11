@@ -1,0 +1,70 @@
+{% extends './layouts/createPqrs_layout.html' %}
+
+{% block contenido_main %}
+
+<div id="formulario" class="rounded col-11 col-lg-6 d-flex align-items-center 
+justify-content-center regular-show bg-indigo-600 flex-direction-column pb-3 ">
+
+    <form action="" enctype="multipart/form-data" class="col-10 col-lg-9 h-75" method="post">
+        <h1 class="text-center text-2xl my-3 text-white font-semibold">Crear Reporte</h1>
+
+
+        <div class="form-floating mb-2">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="nomEmpresa">
+            <label for="floatingInput">Titulo del Reporte</label>
+        </div>
+
+        <div class="form-floating mb-2">
+            <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com" name="nomEmpresa">
+            <label for="floatingInput">Fecha en la que ocurrio</label>
+        </div>
+
+        <!--Seccion de checkbox-->
+        <div class="container my-2">
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pqrs" id="peticion">
+                        <label class="form-check-label text-white font-semibold text-lg" for="peticion">Petición</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pqrs" id="queja">
+                        <label class="form-check-label text-white font-semibold text-lg" for="queja">Queja</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pqrs" id="sugerencia">
+                        <label class="form-check-label text-white font-semibold text-lg" for="sugerencia">Sugerencia</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pqrs" id="reclamo">
+                        <label class="form-check-label text-white font-semibold text-lg" for="reclamo">Reclamo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--Final seccion de checkbox-->
+
+          <div class="form-floating mb-2">
+            <textarea name="descPqrs" class="form-control" placeholder="Describe lo sucedido" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label class="text-lg text-white font-semibold" for="floatingTextarea2">Descripcion del reporte: </label>
+          </div>
+
+
+          <div class="form-group mb-2">
+            <label class="text-lg text-white font-semibold">Foto sobre lo ocurrido</label>
+            <input type="file" class="form-control" name="evidence">
+          </div>
+
+          <hr>
+          <input type="submit" value="Registrarse" class=" btnActPqrs w-100 mb-5" name="btnRegistrar">
+    </form>
+</div>
+
+{% endblock %}

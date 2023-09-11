@@ -57,6 +57,14 @@ class Genders(models.Model):
 # Tabla: Usuarios
 class UserCustom(AbstractUser):
 
+    # Llave Primaria
+    id = models.AutoField(
+        primary_key=True,
+        db_comment="Id usuario",
+        verbose_name="id usuario",
+        null=False
+    )
+
     # Foreign Key: id genero
     id_genero = models.ForeignKey(
         Genders,
@@ -143,7 +151,7 @@ class UserCustom(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.username
     
     # Metadatos de la tabla
     class Meta:

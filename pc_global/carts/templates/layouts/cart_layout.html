@@ -1,0 +1,48 @@
+{# Importacion Archivos estaticos (Resources)#}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- Codificacion de los caracteres-->
+        <meta charset="UTF-8">
+
+        <!-- Escala de representacion en la pantalla del cliente -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Establecer compatibilidad con Internet explorer al ejecutarlo en edge -->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- Titulo Principal Pagina web (Nombre empresa + Titulo Personalizado)-->
+        <title>{% block title_header %}Default{% endblock %} - PcGlobal</title>
+
+        <!-- Importacion Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/boostrap.css' %}">
+        <script src="{% static 'js/boostrap.js' %}"></script>
+
+        <!-- Importacion Fontawesome -->
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+
+        <!-- Importacion Hoja de estilos personalizada -->
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+
+        {# Importacion Header #}
+        {% include 'components/header.html' %}
+        
+        <!-- Contenido Pricnipal-->
+        <main class="{% block main_class %}{% endblock %}">
+
+            {# Definicon bloque de contenido principal#}
+            {% block main%}{% endblock %}
+
+        </main>
+
+        {# Importacion Footer #}
+        {% include 'footer.html' %}
+
+        <!-- Carga JS Personalizado -->
+        <script src="{% static 'landing/app.js' %}"></script>
+    </body>
+</html>

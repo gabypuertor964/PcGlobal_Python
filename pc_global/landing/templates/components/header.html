@@ -34,20 +34,33 @@
                         <a class="hover:text-gray-200" href="/#categorias">Categorías</a>
                     </p>
                     <p>
-                        <a class="hover:text-gray-200" href="#">PQRS</a>
+                        <a class="hover:text-gray-200" href="{% url 'reports' %}">PQRS</a>
                     </p>
                 </div>
     
                 <!-- Enlaces de login y carrito -->
                 <div class="nav-login hidden lg:flex gap-4">
+                    {% if user.is_authenticated %}
+                    <div class="hover:text-gray-200">
+                        <i class="fa-regular fa-user" type="button" data-bs-toggle="dropdown"></i>
+                        <ul class="dropdown-menu mt-2">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><p class="dropdown-item">Daniel</p></li>                        
+                          </ul>
+                        
+                    </div>
+                    {% else %}
                     <a href="{% url 'login' %}" class="hover:text-gray-200">
                         <i class="fa-regular fa-user"></i>
                     </a>
+                    {% endif %}
 
                     <div class="border"></div>
 
                     <p>
-                        <a href="" class="hover:text-gray-200">
+                        <a href="{% url 'cart' %}" class="hover:text-gray-200">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </a>
                     </p>

@@ -1,0 +1,83 @@
+{# Extension Layout principal#}
+{% extends 'layouts/cart_layout.html' %}
+
+{# Se usa el "load static" para hacer uso de archivos estáticos #}
+{% load static %}
+
+{# Se le da formato a los precios #}
+{% load products_extras %}
+
+{# Declaracion comlemento titulo pagina #}
+{% block title_header %}Carrito de compras{% endblock  %}
+
+{# Declaracion Clases Body #}
+{% block body_class %}flex flex-col min-h-screen bg-gray-100{% endblock %}
+
+{# Declaracion Clases Main #}
+{% block main_class %}container my-10 text-justify mx-auto flex-grow  mx-2{% endblock %}
+
+{# Contenido Principal pagina #}
+{% block main %}
+    <div class="container">
+        {% if cart.products.exists %}
+
+        <div class="grid grid-cols-3 gap-x-5">
+            <div class="col-span-3 lg:col-span-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in cart.products.all %}
+                        <tr>
+                            <th>{{ forloop.counter }}</th>
+                            <th>
+                                {% if product.imagen %}
+                                    <img src="/static/img/{{ product.imagen }}" alt="{{product.modelo}}" width="60" height="60">
+                                {% endif %}
+                            </th>
+                            <th>
+                                <a class="hover:text-sm hover:text-black transition-all duration-200" href="{% url 'productos' product.slug %}">{{product.modelo}}</a>
+                                {% include 'carts/snippets/remove.html' %}
+                            </th>
+                            <th>1</th>
+                            <th>
+                                <span class="font-weight-bold">{{product.precio|price_format}}</span>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-span-3 lg:col-auto my-auto">
+                <div class="card">
+                    <div class="card-body flex flex-col justify-center gap-6">
+                        <div class="font-medium">
+                            Subtotal: ({{ cart.products.count }}) <span>{{cart.subtotal | price_format }}</span>
+                        </div>  
+                        <div class="mt-2 w-full">
+                            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 py-2 px-2 rounded text-white">
+                                <i class="fa fa-credit-card"></i>
+                                Proceder al pago
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="text-center">
+            <p class="h3">Tu carrito de compras está vacío</p>
+            <a class="hover:underline" href="/#categorias">Seguir comprando</a>
+        </div>
+
+        {% endif %}
+    </div>
+{% endblock %}

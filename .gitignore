@@ -39,6 +39,7 @@ node_modules/
 # --------------------
 style.min.css
 migrations/
+!migrations/__init__.py
 
 # --------------------
 # Static Files Production

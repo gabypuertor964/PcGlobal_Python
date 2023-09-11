@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'markdown',
     'jazzmin',
+    'adminlte3',
     'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,10 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'authentication',
+    'carts',
     'facturation',
     'inventory',
+    'landing',
     'pqrs',
-    'landing'
 ]
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True  
@@ -199,5 +201,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Definicion de modelo de usuario personalizado
 AUTH_USER_MODEL = 'authentication.UserCustom'
 
-# Definicion Url de redireccionamiento al loguearse
-LOGIN_REDIRECT_URL = '/admin'
+# Definicion Url de redireccionamiento al desloguearse
+LOGOUT_REDIRECT_URL = '/'

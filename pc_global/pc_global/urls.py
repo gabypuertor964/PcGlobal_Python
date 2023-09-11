@@ -1,8 +1,6 @@
 #Default Django Imports
 from django.contrib import admin
-from django.urls import path
-
-from django.urls import include
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -16,6 +14,12 @@ urlpatterns = [
 
     # Admin Panel Url
     path('admin/', admin.site.urls, name='admin:index'),
+
+    # Pqrs URLS
+    path('pqrs/', include('pqrs.urls')),
+
+    #cart URLS
+    path('carts/', include('carts.urls'))
 ]
 
 # Static and Media URLs (Only for Production)

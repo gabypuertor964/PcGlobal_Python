@@ -1,52 +1,34 @@
-{# Extension Layout principal#}
+{# Extension Layout de Autenticacion #}
 {% extends 'auth_layout.html' %}
 
-{# Se usa el "load static" para hacer uso de archivos estáticos #}
-{% load static %}
+{# Complemento title de la pagina #}
+{% block title %}Login{% endblock %}
 
-{# Declaracion comlemento titulo pagina #}
-{% block title_header %}Login{% endblock  %}
+{# Titulo card #}
+{% block title_card %}Autenticarse para iniciar sesión{% endblock %}
+{# Decalaracion de inputs a mostrar #}
+{% block inputs %}
 
-{# Declaracion Clases Body #}
-{% block body_class %}flex flex-col min-h-screen bg-gray-100{% endblock %}
+    <!-- Input: Correo Electrnico -->
+    <div class="input-group mb-3">
+        <input type="email" name="email" class="form-control" placeholder="Correo Electronico" autofocus>
 
-{# Declaracion Clases Main #}
-{% block main_class %}container my-8 text-justify mx-auto flex-grow mx-2{% endblock %}
-
-{# Contenido Principal pagina #}
-{% block main %}
-
-    <div class="login-container grid grid-cols-2 mx-3 md:mx-20 lg:mx-40 xl:mx-48 border rounded-lg shadow-md bg-white">
-        <div class="img">
-            <img src="https://images.unsplash.com/photo-1564754943164-e83c08469116?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dmVydGljYWx8ZW58MHx8MHx8fDA%3D&w=1000&q=80" alt="img" class="hidden xl:block rounded-s-lg">
-        </div>
-        <div class="col-span-2 xl:col-span-1 flex flex-col items-center justify-center mx-auto my-10 xl:my-0"> 
-            <div class="flex flex-col items-center">
-                <h2 class="text-2xl font-medium mt-6 xl:mt-24">PcGlobal</h2>
-                <h3 class="text-xl">¡Bienvenido de nuevo!</h3>
-            </div>
-            <div class="flex items-center justify-center h-full w-full -mt-0 xl:-mt-24">
-                <form method="post" class="flex flex-col gap-2">
-                    {% csrf_token %}
-                    <div class="username-login flex flex-col">
-                        <label class="text-sm">Correo Electronico</label>
-                        <input type="email" name="username" class="border border-gray-400 w-80 py-2 px-3 rounded-md" placeholder="Ingresa tu correo electronico">
-                    </div>
-                    <div class="password-login flex flex-col">
-                        <label  class="text-sm">Contraseña</label>
-                        <input type="password" name="password" class="border border-gray-400 w-80 py-2 px-3 rounded-md" placeholder="Ingresa la contraseña">
-                    </div>
-                    <button type="submit" class="bg-indigo-600 text-white font-semibold hover:bg-indigo-700 w-48 mx-auto py-2 rounded-sm">Inicia sesión</button>
-                    {% if messages %}
-                    <div class="mt-4 text-center">
-                        {% for message in messages %}
-                            <p>{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </form>
-
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-envelope "></span>
             </div>
         </div>
     </div>
+
+    <!-- Input: Contraseña -->
+    <div class="input-group mb-3">
+        <input type="password" name="password" class="form-control" placeholder="Contraseña">
+
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock "></span>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
