@@ -1,18 +1,22 @@
 {% extends 'adminlte/base.html' %}
 {% load static %}
 
+{% block title_outer %}
+    <title>{% block title %}Mi panel - PcGlobal{% endblock %}</title>
+{% endblock %}
+
 {# vinculacion a los estilos y a tailwind#}
 {% block stylesheets %}
     {% include 'adminlte/lib/_styles.html' %}
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock %}
 
 {% block nav_header %}
-    {% include "components/header_main.html" %}
+    {% include "auth/components/header-main.html" %}
 {% endblock %}
 
 {% block nav_sidebar %}
-    {% include "components/sliderbarmain.html" %}
+    {% include "auth/components/side-bar-admin.html" %}
 {% endblock %}
 

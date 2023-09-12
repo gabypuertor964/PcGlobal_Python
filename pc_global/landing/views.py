@@ -5,7 +5,20 @@ from django.http import Http404
 import markdown
 
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        # Get the user name
+        username = request.user.username
+
+        # Check if the user name exists
+        if not username:
+            # If the user name does not exist, get the user full name
+            fullname = request.user.get_full_name()
+    else:
+        username = None
+        fullname = None
+
+    # Render the template with its context
+    return render(request, 'index.html', {'username': username or fullname})
 
 def categories(request, category_name):
 
@@ -41,6 +54,9 @@ def product_view(request, product_name):
     descripcion_2_md = markdown.markdown(product.descripcion_2)
     
     return render(request, 'products/product.html', {"producto": product, 'descripcion_1_md': descripcion_1_md, "descripcion_2_md": descripcion_2_md})
+
+def panel(request):
+    return render(request, 'auth/dashboard.html')
 
 # Error: Not Found
 def handler404(request, exception):

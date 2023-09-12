@@ -1,0 +1,60 @@
+[class*=sidebar-dark-]{
+    --tw-bg-opacity: 1;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active{
+    background-color: rgb(96, 87, 230);
+}
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus{
+    transition: ease-in-out .2s;
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+}
+[class*=sidebar-dark] .user-panel{
+    --tw-bg-opacity: 1;
+    border-bottom: 1px solid rgb(240 249 255 / var(--tw-bg-opacity)); 
+}
+
+[class*=sidebar-dark] .brand-link{
+    --tw-bg-opacity: 1;
+    border-bottom: 1px solid rgb(240 249 255 / var(--tw-bg-opacity));
+}
+
+.btn-search{
+    --tw-bg-opacity: 1;
+    border: none;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+    color: rgb(255 255 255);
+    font-size: 1rem;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.btn-search:hover{
+    border: none;
+    background-color:rgb(63, 54, 189);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);  
+}
+
+.btn-search:focus{
+    outline:none;
+}
+
+
+.btn-search:active{
+    outline:none;
+}
+
+.username{
+    color: rgb(255, 255, 255) !important;
+}
+
+.username:hover{
+    color: rgb(226, 226, 226) !important;
+}
+
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover{
+    --tw-bg-opacity: 1;
+    color: rgb(79 70 229 / var(--tw-bg-opacity)) !important;
+}
