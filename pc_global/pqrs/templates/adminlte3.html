@@ -1,0 +1,16 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+
+{# vinculacion a los estilos y a tailwind#}
+{% block stylesheets %}
+    {% include 'components/styles.html' %}
+{% endblock %}
+
+{% block nav_header %}
+    {% include "components/header_main.html" %}
+{% endblock %}
+
+
+{% block nav_sidebar %}
+    {% include "components/sliderbar_admin.html" %}
+{% endblock %}

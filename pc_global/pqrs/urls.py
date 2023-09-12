@@ -7,5 +7,8 @@ from . import views
 
 urlpatterns = [
     path('reports/', views.pqrs, name='reports'),
-    path('createpqrs/', views.CreatePqrs, name='create-pqrs')
+    path('createpqrs/', views.CreatePqrs, name='create-pqrs'),
+    
+    # ruta de prueba para la interfaz de adminlte3
+    path('xd/', views.adminlte, name = 'admin')
 ]
