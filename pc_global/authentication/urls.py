@@ -5,7 +5,6 @@ from .views import RegisterView, LoginView
 
 # Import Auth Views
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import Email
 
 urlpatterns = [
 
@@ -24,4 +23,5 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
 ]

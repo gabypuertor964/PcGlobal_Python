@@ -3,14 +3,16 @@
 
 {# vinculacion a los estilos y a tailwind#}
 {% block stylesheets %}
-    {% include 'components/styles.html' %}
+    {% include 'adminlte/lib/_styles.html' %}
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
 {% endblock %}
 
 {% block nav_header %}
     {% include "components/header_main.html" %}
 {% endblock %}
 
-
 {% block nav_sidebar %}
-    {% include "components/sliderbar_admin.html" %}
+    {% include "components/sliderbarmain.html" %}
 {% endblock %}
+
