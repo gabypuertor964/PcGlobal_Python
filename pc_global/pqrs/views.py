@@ -8,3 +8,8 @@ def pqrs(request):
 
 def CreatePqrs(request):
     return render(request, 'createPqrs.html')
+
+# redenrizacion del index de adminlte3
+
+def adminlte(request):
+    return render(request, 'adminlte3.html')
