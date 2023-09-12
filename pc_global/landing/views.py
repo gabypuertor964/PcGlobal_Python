@@ -55,6 +55,9 @@ def product_view(request, product_name):
     
     return render(request, 'products/product.html', {"producto": product, 'descripcion_1_md': descripcion_1_md, "descripcion_2_md": descripcion_2_md})
 
+def proof_panel(request):
+    return render(request, 'auth/proof.html')
+
 # Error: Not Found
 def handler404(request, exception):
 
