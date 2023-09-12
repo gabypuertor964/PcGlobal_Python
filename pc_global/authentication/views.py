@@ -55,6 +55,10 @@ class LoginView(View):
 
     def get(self, request):
 
+        #Validar si el usuario ya esta autenticado
+        if request.user.is_authenticated:
+            return redirect('index')
+
         #Identificador del nombre de la vista a usar
         context={
             'view':'login'
