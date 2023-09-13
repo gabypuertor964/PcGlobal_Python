@@ -3,6 +3,7 @@ from inventory.models import Products, Categories
 from django.core.paginator import Paginator
 from django.http import Http404
 import markdown
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     if request.user.is_authenticated:
@@ -55,7 +56,8 @@ def product_view(request, product_name):
     
     return render(request, 'products/product.html', {"producto": product, 'descripcion_1_md': descripcion_1_md, "descripcion_2_md": descripcion_2_md})
 
-def panel(request):
+@login_required()
+def dashboard(request):
     return render(request, 'dashboard.html')
 
 # Error: Not Found
