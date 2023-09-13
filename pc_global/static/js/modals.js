@@ -38,3 +38,21 @@ const closeWindowDelete = () => {
 }
 
 closeButtonDelete.addEventListener('click', () => closeWindowDelete())
+
+const windowBackgroundView = document.getElementById('window-background-view')
+const windowContainerView= document.getElementById('window-background-view'); 
+const openButtonView = document.getElementById('button-view');
+const closeButtonview = document.getElementById('close-button-view')
+
+openButtonView.addEventListener('click', ()=> windowBackgroundView.style.display='flex')
+
+const closeWindowView = () => {
+    windowContainerView.classList.add('close')
+
+    setTimeout(() => {
+        windowContainerView.classList.remove('close')
+        windowBackgroundView.style.display = 'none'
+    }, 1000)
+}
+
+closeButtonview.addEventListener('click', () => closeWindowView())
