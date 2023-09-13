@@ -9,6 +9,7 @@ def index(request):
     if request.user.is_authenticated:
         # Get the user name
         username = request.user.username
+        
 
         # Check if the user name exists
         if not username:
