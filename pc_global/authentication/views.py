@@ -10,6 +10,11 @@ class RegisterView(View):
     template_name = 'register_user.html'
     
     def get(self, request): 
+        
+        #Validar si el usuario ya esta autenticado
+        if request.user.is_authenticated:
+            return redirect('index')
+        
         context = {
             'view':'register',
             'form': CustonRegistrationForm()
