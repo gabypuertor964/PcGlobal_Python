@@ -56,7 +56,7 @@ def product_view(request, product_name):
     return render(request, 'products/product.html', {"producto": product, 'descripcion_1_md': descripcion_1_md, "descripcion_2_md": descripcion_2_md})
 
 def panel(request):
-    return render(request, 'auth/dashboard.html')
+    return render(request, 'dashboard.html')
 
 # Error: Not Found
 def handler404(request, exception):
