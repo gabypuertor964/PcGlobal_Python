@@ -2,6 +2,8 @@ from django.db import models
 from landing.models import States
 from django.conf import settings
 from datetime import datetime
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
 
 # Tabla: Tipo de PQRS
 class PqrsTypes(models.Model):
@@ -84,7 +86,7 @@ class Pqrs(models.Model):
     )
 
     evidence = models.ImageField(
-        upload_to='evidence/%Y/%m/%d',
+        upload_to='pqrs/static/evidence/reporte/%Y/%m/%d',
         null=True,
         blank=True,
         verbose_name="Foto de lo sucedido"
@@ -97,7 +99,14 @@ class Pqrs(models.Model):
         null=True,
         blank=True
     )
-
+    
+    # campo slug
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        verbose_name="slug",
+        db_comment="Slug del pqrs"
+    )
     # Campo Fecha de creacion
     fecha_creacion = models.DateTimeField(
         auto_now_add=True,
@@ -111,7 +120,15 @@ class Pqrs(models.Model):
         db_comment="Fecha de actualizacion",
         verbose_name="Fecha de actualizacion"
     )
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Pqrs, self).save(*args, **kwargs)
 
+    # def set_slug(sender, instance, *args, **kwargs):
+    #     instance.slug = slugify(instance.title)
+    # pre_save.connect(set_slug, sender=Pqrs)
+    
     def __str__(self):
         return f'{self.id_cliente} {self.title}'
     
