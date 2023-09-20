@@ -50,16 +50,16 @@ class BrandsAdmin(ImportExportModelAdmin):
 
 class ProductsAdmin(ImportExportModelAdmin):
     #Campos a mostrar
-    list_display = ("id", "modelo", "precio", "slug")
+    list_display = ("id", "modelo", "precio", "marca", "categoria")
 
     #Campos empleados como link a la pagina de modificacion
     list_display_links = ("id",)
 
     #Items editables en el panel (Input)
-    list_editable = ("modelo", "precio", "slug")
+    list_editable = ("modelo", "precio", "categoria", "marca")
 
     #Campos por los que se puede buscar
-    search_fields = ("modelo", "precio")
+    search_fields = ("modelo", "precio", "slug")
     
     list_per_page = 12
     

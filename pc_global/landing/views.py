@@ -41,9 +41,20 @@ def categories(request, category_name):
         products = paginator.page(page)
     except:
         raise Http404("La categoria no existe")
+    
+    if request.user.is_authenticated:
+        # Get the user name
+        username = request.user.username
+        # Check if the user name exists
+        if not username:
+            # If the user name does not exist, get the user full name
+            fullname = request.user.get_full_name()
+    else:
+        username = None
+        fullname = None
 
     # Render the page
-    return render(request, 'products/categories.html',{"category": category, "entity": products, "paginator": paginator,})
+    return render(request, 'products/categories.html',{'category': category, 'entity': products, 'paginator': paginator, 'username': username or fullname})
 
 def product_view(request, product_name):
     
