@@ -26,9 +26,20 @@ def add(request):
     cart = get_or_create_cart(request)
     product = Products.objects.get(pk=request.POST.get('product_id'))
     
+    if request.user.is_authenticated:
+        # Get the user name
+        username = request.user.username
+        # Check if the user name exists
+        if not username:
+            # If the user name does not exist, get the user full name
+            fullname = request.user.get_full_name()
+    else:
+        username = None
+        fullname = None
+    
     cart.products.add(product)
     
-    return render(request, 'carts/add.html',{"product": product})
+    return render(request, 'carts/add.html',{"product": product, 'username': username or fullname})
 
 def remove(request):
     
