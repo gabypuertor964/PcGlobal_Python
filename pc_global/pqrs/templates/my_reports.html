@@ -9,9 +9,18 @@
         <a href="{% url 'create-pqrs'%}" class="btnPqrs btnPqrs-hover"><i class="fa-solid fa-plus me-2 font-bold"></i>Crear un Reporte</a>
     </section>
     <hr>
-    <h2 class="text-3xl font-semibold text-center mt-6">Por el momento tienes 5 reportes hechos</h1>
+    <h1 class="text-3xl font-semibold text-center mt-6 ">Por el momento tienes {{ object_list|length  }} reportes hechos</h1>
 
-    <section class="grid md:grid-cols-3 mx-auto w-11/12 my-6 gap-4 sm:grid-cols-1">
+    {% if messages%}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <p class="text-center text-2xl font-bold">{{ message|upper }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark relative top-[-6px] text-2xl"></i></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <section class="grid md:grid-cols-3 xl:grid-cols-3 gap-y-3 mx-auto w-11/12 2xl:w-4/6 my-6 md:gap-4 sm:gap-2 sm:grid-cols-1 place-items-center">
        
         {% include 'components/divs_pqrs.html' %}
 

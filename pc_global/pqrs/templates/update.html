@@ -1,0 +1,13 @@
+{% extends "./layouts/pqrs_layout.html" %}
+
+{% block main_class %}h-screen w-full flex items-center justify-center my-5{% endblock %}
+
+{% block main %}
+
+<div id="formulario" class="rounded-lg w-[65%] d-flex align-items-center justify-content-center regular-show bg-indigo-200 shadow-2xl shadow-indigo-700/25 flex-col pb-3 my-5">
+    <h1 class="text-center text-2xl my-3 text-indigo-600 font-semibold">Editar Reporte</h1>
+    {% include "snippets/form-update.html" %}
+</div>
+
+
+{% endblock %}

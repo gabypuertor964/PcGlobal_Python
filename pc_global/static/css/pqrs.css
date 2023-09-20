@@ -83,8 +83,10 @@ article:hover{
 .window-container-view{
     position: relative;
     background-color: #4f46e5;
-    width: 550px;
-    height: auto;
+    width: 60%;
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden; 
     padding: 1.5rem;
     border-radius: 8px;
     animation-name: modal;
@@ -92,6 +94,23 @@ article:hover{
     box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .4);
     z-index: 10;
 }
+
+.window-container-view::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilos para el riel de la barra de desplazamiento */
+.window-container-view::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color del fondo del riel */
+}
+
+/* Estilos para el mango o "pulgares" de la barra de desplazamiento */
+.window-container-view::-webkit-scrollbar-thumb {
+    background-color: #4f46e5; /* Color del mango */
+    border-radius: 6px; /* Borde redondeado */
+    border: 3px solid #f1f1f1; /* Borde de la barra de desplazamiento */
+}
+
 @keyframes modal {
     from{
         transform: translateY(50vh);
@@ -134,8 +153,8 @@ article:hover{
 
 .close-button-view{
     position: absolute;
-    top: -15px;
-    right: -15px;
+    top: 5px;
+    left: 5px;
     width: 40px;
     height: 40px;
     display: flex;
@@ -145,3 +164,10 @@ article:hover{
     cursor: pointer;
 }
 
+.Aprobado{
+    color: #22c55e;
+}
+
+.Rechazado{
+    color: #dc2626;
+}
