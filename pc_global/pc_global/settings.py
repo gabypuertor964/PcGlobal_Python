@@ -203,12 +203,14 @@ AUTH_USER_MODEL = 'authentication.UserCustom'
 
 # Definicion Url de redireccionamiento al desloguearse
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL='/auth/login/'
+REGISTER_URL='/auth/register/'
 
 EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp-relay.brevo.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pgloc77@gmail.com'
-EMAIL_HOST_PASSWORD = 'a1wDEJ7cLQqspVFT'
+EMAIL_HOST_PASSWORD = 'nKDxha0CsfzVH4QG'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 AUTH_PASSWORD_RESET_CONFIRM_DOMAIN = 'localhost:8000'

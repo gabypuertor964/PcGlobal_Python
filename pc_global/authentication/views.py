@@ -35,6 +35,8 @@ class RegisterView(View):
             # Cifrar la contraseña
             user.set_password(form.cleaned_data['password'])
 
+            user.username=form.cleaned_data['email']
+
             # Guardar informacion del usuario en BD
             user.save()
 
