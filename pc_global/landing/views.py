@@ -63,10 +63,21 @@ def product_view(request, product_name):
     except Products.DoesNotExist:
         raise Http404("El producto no existe")
         
+    if request.user.is_authenticated:
+        # Get the user name
+        username = request.user.username
+        # Check if the user name exists
+        if not username:
+            # If the user name does not exist, get the user full name
+            fullname = request.user.get_full_name()
+    else:
+        username = None
+        fullname = None
+    
     descripcion_1_md = markdown.markdown(product.descripcion_1)
     descripcion_2_md = markdown.markdown(product.descripcion_2)
     
-    return render(request, 'products/product.html', {"producto": product, 'descripcion_1_md': descripcion_1_md, "descripcion_2_md": descripcion_2_md})
+    return render(request, 'products/product.html', {"producto": product, 'descripcion_1_md': descripcion_1_md, "descripcion_2_md": descripcion_2_md,'username': username or fullname})
 
 @login_required()
 def dashboard(request):
