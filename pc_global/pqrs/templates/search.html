@@ -1,0 +1,23 @@
+{% extends "./layouts/pqrs_layout.html" %}
+
+{% block main_class %}h-screen w-full  my-5{% endblock  %}
+
+{% block main %}
+
+{% include "./snippets/search.html" with query=query %}
+
+{% if query %}
+<h1 class="my-4 text-center text-3xl font-semibold">Resultados para "{{ query }}":</h1>
+{% else %}
+<h1 class="my-4 text-center text-3xl font-semibold">Se han encontrado 0 elementos 😕</h1>
+<a href="{% url 'reports'%}">Volver a ver mis reportes</a>
+{% endif %}
+
+
+<section class="grid md:grid-cols-3 xl:grid-cols-3 gap-y-3 mx-auto w-11/12 2xl:w-4/6 my-6 md:gap-4 sm:gap-2 sm:grid-cols-1 place-items-center">
+       
+    {% include 'components/divs_pqrs.html' %}
+
+    {# include 'components/modals.html'#}
+</section>
+{% endblock  %}

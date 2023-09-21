@@ -13,12 +13,22 @@
 
     {% if messages%}
         {% for message in messages %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <p class="text-center text-2xl font-bold">{{ message|upper }}</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark relative top-[-6px] text-2xl"></i></button>
-        </div>
+            {% if message != 'Reporte borrado con éxito' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <p class="text-center text-2xl font-bold">{{ message|upper }}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark relative top-[-6px] text-2xl"></i></button>
+                </div>
+            {% else %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <p class="text-center text-2xl font-bold">{{ message|upper }}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark relative top-[-6px] text-2xl"></i></button>
+                </div>
+            {% endif %}
+
         {% endfor %}
     {% endif %}
+
+    {% include "snippets/search.html" %}
 
     <section class="grid md:grid-cols-3 xl:grid-cols-3 gap-y-3 mx-auto w-11/12 2xl:w-4/6 my-6 md:gap-4 sm:gap-2 sm:grid-cols-1 place-items-center">
        

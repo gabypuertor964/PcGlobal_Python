@@ -26,12 +26,30 @@ class PqrsListView(LoginRequiredMixin, ListView):
         context["message"] = "Xd"
         return context
 
+class PqrsSearchView(LoginRequiredMixin ,ListView):
+    login_url = 'login'
+    template_name = 'search.html'
+    
+    def get_queryset(self):
+        return Pqrs.objects.filter(title__icontains=self.query(), id_cliente=self.request.user)
+    
+    def query(self):
+        return self.request.GET.get('query')
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["query"] = self.query()
+        # context['count'] = context['query'].count()
+        return context
+
+
 @login_required(login_url='http://127.0.0.1:8000/auth/login/')
 def delete_pqrs(request, id):
     pqrs = Pqrs.objects.get(id = id)
     pqrs.delete()
     messages.success(request, 'Reporte borrado con éxito')
     return redirect('reports')
+
 
 
 class PqrsUpdateView(LoginRequiredMixin, SuccessMessageMixin,  UpdateView):
